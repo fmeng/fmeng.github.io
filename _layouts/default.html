@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="VikwqTxe7ybu1qSM7LFgIQpvHLN0_j-iVzaLqF88vEw" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Matt Swanson - {{ page.title }}</title>
+  <meta name="author" content="Matt Swanson" />
+  <meta name="description" content="blog posts, talks, book writeups and projects by a software engineer in Indiana" />
+  <link rel="canonical" href="http://mdswanson.com{{ page.url | replace:'index.html','' }}" />
+
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <link rel="alternate" type="application/rss+xml" title="Matt Swanson" href="{{site.baseurl}}/atom.xml" />
+
+  {% if site.github %}
+    <link rel="stylesheet" href="/css/all.css?sha={{ site.github.build_revision }}">
+  {% else %}
+    <link rel="stylesheet" href="/css/all.css">
+  {% endif %}
+<!--[if IE 7]>
+  <link rel="stylesheet" href="/css/font-awesome-ie7.min.css">
+<![endif]-->
+</head>
+<body>
+  <div class="container">
+    <div class="four columns sidebar">
+      {% include sidebar.html %}
+    </div>
+
+    <div class="eleven columns content">
+      {{ content }}
+
+      <div class="footer">
+        {% include footer.html %}
+      </div>
+    </div>
+  </div>
+
+{% include analytics.html %}
+</body>
+</html>
