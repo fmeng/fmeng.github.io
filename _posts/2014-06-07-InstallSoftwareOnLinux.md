@@ -2,7 +2,7 @@
 layout: post
 title: "在CentOs上安装软件"
 categories:
-- linux
+- linus
 ---
 1. ##源码安装
 	
