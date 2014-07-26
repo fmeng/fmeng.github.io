@@ -8,7 +8,7 @@ categories:
  >要操作的xml文件。<br/>
  
 
-<code>
+<pre>
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <exam>
 	<student examid="222" idcard="111">
@@ -17,7 +17,7 @@ categories:
 		<grade>95</grade>
 	</student>
 </exam>
-</code>
+</pre>
 
 1. ##DOM解析
 
