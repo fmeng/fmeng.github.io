@@ -8,16 +8,16 @@ categories:
  >要操作的xml文件。<br/>
  
 
-<pre>
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<exam>
+<code>
+	<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+	<exam>
 	<student examid="222" idcard="111">
 		<name>张三</name>
 		<location>沈阳</location>
 		<grade>95</grade>
 	</student>
-</exam>
-</pre>
+	</exam>
+</code>
 
 1. ##DOM解析
 
