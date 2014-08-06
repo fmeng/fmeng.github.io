@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "正则表达式2"
+title: "趴取图书馆数据“乱码”解决方法 "
 categories:
 - java
 ---
 
-## 趴取图书馆数据“乱码”解决方法 ##
+## 寻找解决方法 ##
 &emsp;&emsp;NCF不是一种编码。原理很简单，就是把除了 ISO-8859-1 编码中前128个字符以外的所有其他的编码都用 NCR(Numeric character reference) 来表示。比如“汉字”这两个字，如果我们写成“&#27721;&#23383;”这种形式，那么它在任意字符集下都可以正确显示。<br/>
 [http://blog.sina.com.cn/s/blog_56da5aa0010007g0.html](http://blog.sina.com.cn/s/blog_56da5aa0010007g0.html)
 
