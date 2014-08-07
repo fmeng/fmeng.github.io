@@ -2,7 +2,7 @@
 layout: post
 title: "解析网页内容--li"
 categories:
-- life
+- java
 ---
 
 ## 已经从网站抓取网页 ##
