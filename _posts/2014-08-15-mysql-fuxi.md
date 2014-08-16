@@ -2,14 +2,14 @@
 layout: post
 title: "mysql复习"
 categories:
-- life
+- other
 ---
 
 ## 数据类型 ##
 
 
 - 整型
-<table>
+<table border=1>
 	<tr><td>类型</td><td>字节</td><td>最小值</td><td>最大值</td></tr>
 	<tr><td>&nbsp;</td><td>&nbsp;</td><td>有/无符号</td><td>有/无符号</td></tr>
 	<tr><td>tinyint</td><td>1</td><td>-128</td><td>127</td></tr>
@@ -30,7 +30,7 @@ unsigned 代表无符号，zerofill代表零填充 ,smallint(2)2代表零填充�
 
 
 - 浮点型/定点型
-<table>
+<table border=1>
 	<tr><td>类型</td><td>字节</td><td>最小值</td><td>最大值</td></tr>
 	<tr><td>&nbsp;</td><td>?</td><td>有/无符号</td><td>有/无符号</td></tr>
 	<tr><td>float(m,d)</td><td>4/8</td><td>-9999.99</td><td>9999.99(1万)</td></tr>
@@ -45,7 +45,7 @@ float,decimal都能表示小数，但是decimal更精确一点。
 
 - 字符型
 
-<table>
+<table border=1>
 	<tr><td>类型</td><td>是否定长</td><td>字节范围</td></tr>
 	<tr><td>char(m)</td><td>定长</td><td>0< m <255</td></tr>
 	<tr><td>varchar</td><td>变长</td><td>0< m <65535</td></tr>
