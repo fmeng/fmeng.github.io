@@ -9,19 +9,19 @@ categories:
 
 
 - 整型
-<table border=1>
-	<tr><td>类型</td><td>字节</td><td>最小值</td><td>最大值</td></tr>
-	<tr><td>&nbsp;</td><td>&nbsp;</td><td>有/无符号</td><td>有/无符号</td></tr>
-	<tr><td>tinyint</td><td>1</td><td>-128</td><td>127</td></tr>
-	<tr><td>tinyint</td><td>1</td><td>0</td><td>255</td></tr>
-	<tr><td>smallint</td><td>2</td><td>-32768</td><td>32767(3万)</td></tr>
-	<tr><td>smallint</td><td>2</td><td>0</td><td>65535(6万)</td></tr>
-	<tr><td>mediumint</td><td>3</td><td>-8388608</td><td>8388607(800万)</td></tr>
-	<tr><td>mediumint</td><td>3</td><td>0</td><td>16777215(1600万)</td></tr>
-	<tr><td>int</td><td>4</td><td>-2147483648</td><td>2147483647(20亿)</td></tr>
-	<tr><td>int</td><td>4</td><td>0</td><td>4294967295(40亿)</td></tr>
-	<tr><td>bigint</td><td>8</td><td>-1000亿亿(20)</td><td>1000亿亿(20)</td></tr>
-	<tr><td>bigint</td><td>8</td><td>0</td><td>21474836472000亿亿(20)</td></tr>
+<table border="1">
+<tr><td>类型</td><td>字节</td><td>最小值</td><td>最大值</td></tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td><td>有/无符号</td><td>有/无符号</td></tr>
+<tr><td>tinyint</td><td>1</td><td>-128</td><td>127</td></tr>
+<tr><td>tinyint</td><td>1</td><td>0</td><td>255</td></tr>
+<tr><td>smallint</td><td>2</td><td>-32768</td><td>32767(3万)</td></tr>
+<tr><td>smallint</td><td>2</td><td>0</td><td>65535(6万)</td></tr>
+<tr><td>mediumint</td><td>3</td><td>-8388608</td><td>8388607(800万)</td></tr>
+<tr><td>mediumint</td><td>3</td><td>0</td><td>16777215(1600万)</td></tr>
+<tr><td>int</td><td>4</td><td>-2147483648</td><td>2147483647(20亿)</td></tr>
+<tr><td>int</td><td>4</td><td>0</td><td>4294967295(40亿)</td></tr>
+<tr><td>bigint</td><td>8</td><td>-1000亿亿(20)</td><td>1000亿亿(20)</td></tr>
+<tr><td>bigint</td><td>8</td><td>0</td><td>21474836472000亿亿(20)</td></tr>
 <table>
 *****
 unsigned 代表无符号，zerofill代表零填充 ,smallint(2)2代表零填充的宽度。
@@ -31,9 +31,9 @@ unsigned 代表无符号，zerofill代表零填充 ,smallint(2)2代表零填充�
 
 - 浮点型/定点型
 <table border=1>
-	<tr><td>类型</td><td>字节</td><td>最小值</td><td>最大值</td></tr>
-	<tr><td>&nbsp;</td><td>?</td><td>有/无符号</td><td>有/无符号</td></tr>
-	<tr><td>float(m,d)</td><td>4/8</td><td>-9999.99</td><td>9999.99(1万)</td></tr>
+<tr><td>类型</td><td>字节</td><td>最小值</td><td>最大值</td></tr>
+<tr><td>&nbsp;</td><td>?</td><td>有/无符号</td><td>有/无符号</td></tr>
+<tr><td>float(m,d)</td><td>4/8</td><td>-9999.99</td><td>9999.99(1万)</td></tr>
 <tr><td>float(m,d)</td><td>&nbsp;</td><td>0.00</td><td>2万</td></tr>
 <tr><td>decimal(m,d)</td><td>4/8</td><td>-9999.99</td><td>9999.99(2万)</td></tr>
 <tr><td>decimal(m,d)</td><td>&nbsp;</td><td>0.00</td><td>2万</td></tr>
@@ -46,9 +46,9 @@ float,decimal都能表示小数，但是decimal更精确一点。
 - 字符型
 
 <table border=1>
-	<tr><td>类型</td><td>是否定长</td><td>字节范围</td></tr>
-	<tr><td>char(m)</td><td>定长</td><td>0< m <255</td></tr>
-	<tr><td>varchar</td><td>变长</td><td>0< m <65535</td></tr>
+<tr><td>类型</td><td>是否定长</td><td>字节范围</td></tr>
+<tr><td>char(m)</td><td>定长</td><td>0< m <255</td></tr>
+<tr><td>varchar</td><td>变长</td><td>0< m <65535</td></tr>
 </table>
 ****
 char(m),实际占用m个字符，存储的数据不够m个，要用空格补齐。在数据取出过程中，会把字符后面的空格去掉。<br/>
