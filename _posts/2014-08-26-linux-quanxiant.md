@@ -28,7 +28,7 @@ categories:
 
 #### 事实证明一切--做一下测试吧 ####
 
-<table style="border:1px solid #0C84E8">
+<table class="meng">
 <tr><td>目录</td><td>文件</td><td>表现状态</td></tr>
 </table>
 ## 不为人知的SGU ##
