@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Jdbc注册驱动的三种方式"
+title: "JDBC常见问题"
 categories:
 - java
 ---
