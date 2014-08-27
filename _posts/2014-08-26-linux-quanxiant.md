@@ -29,7 +29,7 @@ categories:
 #### 事实证明一切--做一下测试吧 ####
 
 <table class="meng">
-<tr><td>目录</td><td>文件</td><td>表现状态</td></tr>
+<tr><td>&emsp;目录&emsp;</td><td>&emsp;文件&emsp;</td><td>表现状态</td></tr>
 <tr><td>_ _ X</td><td>* * * </td><td>虽然有X，但是没有R，W，只能自由切换目录使用cd命令</td></tr>
 <tr><td>_ W _</td><td>* * * </td><td>没有X的权限，不能进入目录，不能在目录创建文件不能ls</td></tr>
 <tr><td>R _ _</td><td>* * * </td><td>没有X的权限，不能再目录创建文件，能ls但是只能查看文件名，不能查看文件权限</td></tr>
