@@ -116,7 +116,8 @@ java.sql.Timestamp</span></td>
 </tr>
 </table>
 
-<p>用于ResultSet.getObject()的MySQL类型和Java类型</p>
+### 用于ResultSet.getObject()的MySQL类型和Java类型 ###
+
 <table class="meng">
 <thead>
 <tr>
@@ -369,6 +370,335 @@ java.sql.Timestamp</span></td>
 <p>
 <span>java.lang.String</span></td>
 </tr>
+</table>
+
+#### JDBC和JAVA数据类型之间的转换 ####
+
+<table class="meng">
+<tbody>
+<tr>
+<th width="20%" style="background-color:#CDCDCD;border:1px solid #AAAAAA;">
+SQL
+</th>
+<th width="20%" style="background-color:#CDCDCD;border:1px solid #AAAAAA;">
+JDBC/Java
+</th>
+<th width="20%" style="background-color:#CDCDCD;border:1px solid #AAAAAA;">
+setXXX
+</th>
+<th width="20%" style="background-color:#CDCDCD;border:1px solid #AAAAAA;">
+updateXXX
+</th>
+</tr>
+<tr>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+VARCHAR
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+java.lang.String
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+setString
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+updateString
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+CHAR
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+java.lang.String
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+setString
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+updateString
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+LONGVARCHAR
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+java.lang.String
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+setString
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+updateString
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+BIT
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+boolean
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+setBoolean
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+updateBoolean
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+NUMERIC
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+java.math.BigDecimal
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+setBigDecimal
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+updateBigDecimal
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+TINYINT
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+byte
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+setByte
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+updateByte
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+SMALLINT
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+short
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+setShort
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+updateShort
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+INTEGER
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+int
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+setInt
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+updateInt
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+BIGINT
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+long
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+setLong
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+updateLong
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+REAL
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+float
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+setFloat
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+updateFloat
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+FLOAT
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+float
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+setFloat
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+updateFloat
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+DOUBLE
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+double
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+setDouble
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+updateDouble
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+VARBINARY
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+byte[ ]
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+setBytes
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+updateBytes
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+BINARY
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+byte[ ]
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+setBytes
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+updateBytes
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+DATE
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+java.sql.Date
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+setDate
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+updateDate
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+TIME
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+java.sql.Time
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+setTime
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+updateTime
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+TIMESTAMP
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+java.sql.Timestamp
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+setTimestamp
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+updateTimestamp
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+CLOB
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+java.sql.Clob
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+setClob
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+updateClob
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+BLOB
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+java.sql.Blob
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+setBlob
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+updateBlob
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+ARRAY
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+java.sql.Array
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+setARRAY
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+updateARRAY
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+REF
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+java.sql.Ref
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+SetRef
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+updateRef
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+STRUCT
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+java.sql.Struct
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+SetStruct
+</td>
+<td style="vertical-align:top;border:1px solid #AAAAAA;">
+updateStruct
+</td>
+</tr>
+</tbody>
 </table>
 
 
