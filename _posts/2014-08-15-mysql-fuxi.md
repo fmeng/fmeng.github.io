@@ -67,6 +67,311 @@ time也可以表示时间差，所以也有负值。<br/>
 datetime格式的数据一般不常用，要精确到秒，可以使用整型存储的时间戳。
 ****
 
+- 类型转换
+
+<table class="meng">
+<thead>
+<tr>
+<td>
+<p align="center">
+<b>下述MySQL数据类型</b></td>
+<td>
+<p align="center">
+<b>总能转换为下述Java类型</b></td>
+</tr>
+</thead>
+<tr>
+<td>
+<p><span class="type">
+<span>CHAR, VARCHAR, BLOB, TEXT, ENUM, and 
+SET</span></span></td>
+<td>
+<p>
+<span>java.lang.String, java.io.InputStream, 
+java.io.Reader, java.sql.Blob, java.sql.Clob</span></td>
+</tr>
+<tr>
+<td>
+<p><span class="type">
+<span>FLOAT, REAL, DOUBLE PRECISION, 
+NUMERIC, DECIMAL, TINYINT, SMALLINT, MEDIUMINT, INTEGER, 
+BIGINT</span></span></td>
+<td>
+<p>
+<span>java.lang.String, java.lang.Short, 
+java.lang.Integer, java.lang.Long, java.lang.Double, 
+java.math.BigDecimal</span><span>
+</span></p>
+<h3>注释：</h3>
+<p>与希望转换的MySQL数据类型相比，如果选择了精度较低的Java数值类型，可能会出现舍入、溢出或精度损失。</td>
+</tr>
+<tr>
+<td>
+<p><span class="type">
+<span>DATE, TIME, DATETIME, TIMESTAMP</span></span></td>
+<td>
+<p>
+<span>java.lang.String, java.sql.Date, 
+java.sql.Timestamp</span></td>
+</tr>
+</table>
+
+<p>用于ResultSet.getObject()的MySQL类型和Java类型</p>
+<table class="meng">
+<thead>
+<tr>
+<td>
+<p align="center">
+<b><span>MySQL</span>类型名称</b></td>
+<td>
+<p align="center">
+<b>以<span>Java</span>类返回</b></td>
+</tr>
+</thead>
+<tr>
+<td>
+<p><span class="type">
+<span>BIT(1)</span></span><span> 
+(new in MySQL-5.0)</span></td>
+<td>
+<p>
+<span>java.lang.Boolean</span></td>
+</tr>
+<tr>
+<td>
+<p><span class="type">
+<span>BIT( &gt; 1)</span></span><span> 
+(new in MySQL-5.0)</span></td>
+<td>
+<p>
+<span>byte[]</span></td>
+</tr>
+<tr>
+<td>
+<p><span class="type">
+<span>TINYINT</span></span></td>
+<td>
+<p><span>
+<span>java.lang.Boolean</span>，如果将配置属性</span>“<span>tinyInt1isBit</span>”设为“真”（默认值），并将存储大小设为“<span>1</span>”；或<span><span>java.lang.Integer</span>，如果不是的话。</span></td>
+</tr>
+<tr>
+<td>
+<p><span class="type">
+<span>BOOL , BOOLEAN</span></span></td>
+<td>
+<p>请参见上面的<span class="type"><span>TINYINT</span>，它们目前是<span>TINYINT(1)</span></span>的别名。</td>
+</tr>
+<tr>
+<td>
+<p><span class="type">
+<span>SMALLINT[(M)] [UNSIGNED]</span></span></td>
+<td>
+<p>
+<span>java.lang.Integer</span>（无论是否为<span>UNSIGNED</span>）</td>
+</tr>
+<tr>
+<td>
+<p><span class="type">
+<span>MEDIUMINT[(M)] [UNSIGNED]</span></span></td>
+<td>
+<p>
+<span>java.lang.Integer</span>（无论是否为<span>UNSIGNED</span>）</td>
+</tr>
+<tr>
+<td>
+<p><span class="type">
+<span>INT,INTEGER[(M)] [UNSIGNED]</span></span></td>
+<td>
+<p>
+<span>java.lang.Integer</span>，如果是<span>UNSIGNED</span>，<span>java.lang.Long</span></td>
+</tr>
+<tr>
+<td>
+<p><span class="type">
+<span>BIGINT[(M)] [UNSIGNED]</span></span></td>
+<td>
+<p>
+<span>java.lang.Long</span>，如果是<span>UNSIGNED</span>，<span>java.math.BigInteger</span></td>
+</tr>
+<tr>
+<td>
+<p><span class="type">
+<span>FLOAT[(M,D)]</span></span></td>
+<td>
+<p>
+<span>java.lang.Float</span></td>
+</tr>
+<tr>
+<td>
+<p><span class="type">
+<span>DOUBLE[(M,B)]</span></span></td>
+<td>
+<p>
+<span>java.lang.Double</span></td>
+</tr>
+<tr>
+<td>
+<p><span class="type">
+<span>DECIMAL[(M[,D])]</span></span></td>
+<td>
+<p>
+<span>java.math.BigDecimal</span></td>
+</tr>
+<tr>
+<td>
+<p><span class="type">
+<span>DATE</span></span></td>
+<td>
+<p>
+<span>java.sql.Date</span></td>
+</tr>
+<tr>
+<td>
+<p><span class="type">
+<span>DATETIME</span></span></td>
+<td>
+<p>
+<span>java.sql.Timestamp</span></td>
+</tr>
+<tr>
+<td>
+<p><span class="type">
+<span>TIMESTAMP[(M)]</span></span></td>
+<td>
+<p>
+<span>java.sql.Timestamp</span></td>
+</tr>
+<tr>
+<td>
+<p><span class="type">
+<span>TIME</span></span></td>
+<td>
+<p>
+<span>java.sql.Time</span></td>
+</tr>
+<tr>
+<td>
+<p><span class="type">
+<span>YEAR[(2|4)]</span></span></td>
+<td>
+<p><span>
+<span>java.sql.Date</span>（日期设为<span>2</span>月<span>1</span>日晚上<span>2</span>点）</span></td>
+</tr>
+<tr>
+<td>
+<p><span class="type">
+<span>CHAR(M)</span></span></td>
+<td>
+<p>
+<span>java.lang.String</span>（除非列的字符集是<span class="type"><span>BINARY</span>），然后返回字节</span><span>[]</span></td>
+</tr>
+<tr>
+<td>
+<p><span class="type">
+<span>VARCHAR(M) [BINARY]</span></span></td>
+<td>
+<p>
+<span>java.lang.String</span>（除非列的字符集是<span class="type"><span>BINARY</span>），然后返回字节</span><span>[]</span></td>
+</tr>
+<tr>
+<td>
+<p><span class="type">
+<span>BINARY(M)</span></span></td>
+<td>
+<p>
+<span>byte[]</span></td>
+</tr>
+<tr>
+<td>
+<p><span class="type">
+<span>VARBINARY(M)</span></span></td>
+<td>
+<p>
+<span>byte[]</span></td>
+</tr>
+<tr>
+<td>
+<p><span class="type">
+<span>TINYBLOB</span></span></td>
+<td>
+<p>
+<span>byte[]</span></td>
+</tr>
+<tr>
+<td>
+<p><span class="type">
+<span>TINYTEXT</span></span></td>
+<td>
+<p>
+<span>java.lang.String</span></td>
+</tr>
+<tr>
+<td>
+<p><span class="type">
+<span>BLOB</span></span></td>
+<td>
+<p>
+<span>byte[]</span></td>
+</tr>
+<tr>
+<td>
+<p><span class="type">
+<span>TEXT</span></span></td>
+<td>
+<p>
+<span>java.lang.String</span></td>
+</tr>
+<tr>
+<td>
+<p><span class="type">
+<span>MEDIUMBLOB</span></span></td>
+<td>
+<p>
+<span>byte[]</span></td>
+</tr>
+<tr>
+<td>
+<p><span class="type">
+<span>MEDIUMTEXT</span></span></td>
+<td>
+<p>
+<span>java.lang.String</span></td>
+</tr>
+<tr>
+<td>
+<p><span class="type">
+<span>LONGBLOB</span></span></td>
+<td>
+<p>
+<span>byte[]</span></td>
+</tr>
+<tr>
+<td>
+<p><span class="type">
+<span>LONGTEXT</span></span></td>
+<td>
+<p>
+<span>java.lang.String</span></td>
+</tr>
+<tr>
+<td>
+<p><span class="type">
+<span>ENUM(&#39;value1&#39;,&#39;value2&#39;,...)</span></span></td>
+<td>
+<p>
+<span>java.lang.String</span></td>
+</tr>
+<tr>
+<td>
+<p><span class="type">
+<span>SET(&#39;value1&#39;,&#39;value2&#39;,...)</span></span></td>
+<td>
+<p>
+<span>java.lang.String</span></td>
+</tr>
+</table>
+
+
 - 建表语句
 	
 		create table student（
@@ -75,3 +380,13 @@ datetime格式的数据一般不常用，要精确到秒，可以使用整型存
 			gender char(1) not null default 
 		）；
 
+- 创建数据库，删除数据库
+
+		create database testtest;
+		drop database testtest;
+
+- 添加列，删除列，修改列
+
+		alter table user add nickName varchar(10);
+		alter table user drop column nickName;
+		
