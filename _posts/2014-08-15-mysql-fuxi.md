@@ -4,6 +4,9 @@ title: "mysql复习"
 categories:
 - other
 ---
+#### [列类型](http://dev.mysql.com/doc/refman/5.1/zh/column-types.html) ####
+
+[http://dev.mysql.com/doc/refman/5.1/zh/column-types.html](http://dev.mysql.com/doc/refman/5.1/zh/column-types.html)
 
 ## 数据类型 ##
 
@@ -26,6 +29,7 @@ categories:
 *****
 unsigned 代表无符号，zerofill代表零填充 ,smallint(2)2代表零填充的宽度。
 只有在无符号位时，零填充才有效。
+如果为一个数值列指定ZEROFILL，MySQL自动为该列添加UNSIGNED属性。
 *****
 
 
@@ -62,6 +66,17 @@ varchar(m),有1-2个自己来表示存储数据的真实长度。
 	3. time HH:II:SS,范围-838-59-59 > 838-59-59
 	4. datetime YY-MM-DD HH:II:SS 范围1000-01-01 00：00:00 > 9999-12-31 23:59:59
 	
+#### 日期和时间类型 ####
+
+<table class="meng">
+<tr><td>列类型</td><td>“零”值</td></tr>
+<tr><td>datetime</td><td>'0000-00-00 00:00:00'</td></tr>
+<tr><td>date</td><td>'0000-00-00'</td></tr>
+<tr><td>timestamp</td><td>00000000000000</td></tr>
+<tr><td>time</td><td>'00:00:00'</td></tr>
+<tr><td>year</td><td>0000</td></tr>
+</table>
+
 ****
 time也可以表示时间差，所以也有负值。<br/>
 datetime格式的数据一般不常用，要精确到秒，可以使用整型存储的时间戳。
@@ -701,6 +716,337 @@ updateStruct
 </tbody>
 </table>
 
+### 数值类型存储需求 ###
+
+<table class="meng">
+<tr>
+<td>
+<p><strong><span>列类型</span></strong></td>
+<td>
+<p><strong><span>存储需求</span></strong></td>
+</tr>
+<tr>
+<td>
+<p>
+<span>tinyint</span></td>
+<td>
+<p><span>1</span>个字节</td>
+</tr>
+<tr>
+<td>
+<p>
+<span>smallint</span></td>
+<td>
+<p><span>2</span>个字节</td>
+</tr>
+<tr>
+<td>
+<p>
+<span>mediumint</span></td>
+<td>
+<p><span>3</span>个字节</td>
+</tr>
+<tr>
+<td>
+<p>
+<span>int</span><span>,
+</span>
+<span>integer</span></td>
+<td>
+<p><span>4</span>个字节</td>
+</tr>
+<tr>
+<td>
+<p>
+<span>bigint</span></td>
+<td>
+<p><span>8</span>个字节</td>
+</tr>
+<tr>
+<td>
+<p>
+<span>float(<i>p</i>)</span></td>
+<td>
+<p>如果<span>0 &lt;= </span>
+<span><i>
+<span>p</span></i></span><span> 
+&lt;= 24</span>为<span>4</span>个字节<span>,
+</span>如果<span>25 &lt;= </span>
+<span><i>
+<span>p</span></i></span><span> 
+&lt;= 53</span>为<span>8</span>个字节</td>
+</tr>
+<tr>
+<td>
+<p>
+<span>float</span></td>
+<td>
+<p><span>4</span>个字节</td>
+</tr>
+<tr>
+<td>
+<p>
+<span>double [precision]</span><span>, 
+item </span>
+<span>real</span></td>
+<td>
+<p><span>8</span>个字节</td>
+</tr>
+<tr>
+<td>
+<p>
+<span>decimal(<i>M</i>,<i>D</i>)</span><span>,
+</span>
+<span>numeric(<i>M</i>,<i>D</i>)</span></td>
+<td>
+<p>变长；参见下面的讨论</td>
+</tr>
+<tr>
+<td>
+<p>
+<span>bit(<i>M</i>)</span></td>
+<td>
+<p>大约<span>(</span><span><i><span>M</span></i></span><span>+7)/8</span>个字节</td>
+</tr>
+</table>
+
+DECIMAL(和NUMERIC)的存储需求与具体版本有关：
+
+使用二进制格式将9个十进制(基于10)数压缩为4个字节来表示DECIMAL列值。每个值的整数和分数部分的存储分别确定。每个9位数的倍数需要4个字节，并且“剩余的”位需要4个字节的一部分。下表给出了超出位数的存储需求：
+
+<table class="meng">
+<tr>
+<td>
+<p><strong><span>剩余的</span></strong></td>
+<td>
+<p><strong><span>字节</span></strong></td>
+</tr>
+<tr>
+<td>
+<p><b>位数</b></td>
+<td>
+<p><strong><span>数目</span></strong></td>
+</tr>
+<tr>
+<td>
+<p><span>0</span></td>
+<td>
+<p><span>0</span></td>
+</tr>
+<tr>
+<td>
+<p><span>1</span></td>
+<td>
+<p><span>1</span></td>
+</tr>
+<tr>
+<td>
+<p><span>2</span></td>
+<td>
+<p><span>1</span></td>
+</tr>
+<tr>
+<td>
+<p><span>3</span></td>
+<td>
+<p><span>2</span></td>
+</tr>
+<tr>
+<td>
+<p><span>4</span></td>
+<td>
+<p><span>2</span></td>
+</tr>
+<tr>
+<td>
+<p><span>5</span></td>
+<td>
+<p><span>3</span></td>
+</tr>
+<tr>
+<td>
+<p><span>6</span></td>
+<td>
+<p><span>3</span></td>
+</tr>
+<tr>
+<td>
+<p><span>7</span></td>
+<td>
+<p><span>4</span></td>
+</tr>
+<tr>
+<td>
+<p><span>8</span></td>
+<td>
+<p><span>4</span></td>
+</tr>
+<tr>
+<td>
+<p><span>9</span></td>
+<td>
+<p><span>4</span></td>
+</tr>
+</table>
+
+### 日期和时间类型的存储需求 ###
+
+<table class="meng">
+<tr>
+<td>
+<p><strong><span>列类型</span></strong></td>
+<td>
+<p><strong><span>存储需求</span></strong></td>
+</tr>
+<tr>
+<td>
+<p>
+<span>DATE</span></td>
+<td>
+<p><span>3</span>个字节</td>
+</tr>
+<tr>
+<td>
+<p>
+<span>DATETIME</span></td>
+<td>
+<p><span>8</span>个字节</td>
+</tr>
+<tr>
+<td>
+<p>
+<span>TIMESTAMP</span></td>
+<td>
+<p><span>4</span>个字节</td>
+</tr>
+<tr>
+<td>
+<p>
+<span>TIME</span></td>
+<td>
+<p><span>3</span>个字节</td>
+</tr>
+<tr>
+<td>
+<p>
+<span>YEAR</span></td>
+<td>
+<p><span>1</span>个字节</td>
+</tr>
+</table>
+
+### 字符串类型的存储需求 ###
+
+<table class="meng">
+<tr>
+<td>
+<p><strong><span>列类型</span></strong></td>
+<td>
+<p><strong><span>存储需求</span></strong></td>
+</tr>
+<tr>
+<td>
+<p>
+<span>CHAR(<i>M</i>)</span></td>
+<td>
+<p><span><i>
+<span>M</span></i></span>个字节，<span>0
+</span>
+<span>&lt;= <i>M</i> &lt;=</span><span> 
+255</span></td>
+</tr>
+<tr>
+<td>
+<p>
+<span>VARCHAR(<i>M</i>)</span></td>
+<td>
+<p><span><i>
+<span>L</span></i></span><span>+1</span>个字节，其中<span><i><span>L</span></i><span> 
+&lt;= <i>M </i></span></span>且<span>0 </span>
+<span>&lt;= <i>M</i> &lt;=</span><span> 
+65535(</span>参见下面的注释<span>)</span></td>
+</tr>
+<tr>
+<td>
+<p>
+<span>BINARY(<i>M</i>)</span></td>
+<td>
+<p><span><i>
+<span>M</span></i></span>个字节，<span>0
+</span>
+<span>&lt;= <i>M</i> &lt;=</span><span> 
+255</span></td>
+</tr>
+<tr>
+<td>
+<p>
+<span>VARBINARY(<i>M</i>)</span></td>
+<td>
+<p><span><i>
+<span>L</span></i></span><span>+1</span>个字节，其中<span><i><span>L</span></i><span> 
+&lt;= <i>M </i></span></span>且<span>0 </span>
+<span>&lt;= <i>M</i> &lt;=</span><span> 
+255</span></td>
+</tr>
+<tr>
+<td>
+<p>
+<span>TINYBLOB</span><span>,
+</span>
+<span>TINYTEXT</span></td>
+<td>
+<p><span><i>
+<span>L</span></i></span><span>+1</span>个字节，其中<span><i><span>L</span></i></span><span> 
+&lt; 2<sup>8</sup></span></td>
+</tr>
+<tr>
+<td>
+<p>
+<span>BLOB</span><span>,
+</span>
+<span>TEXT</span></td>
+<td>
+<p><span><i>
+<span>L</span></i></span><span>+2</span>个字节，其中<span><i><span>L</span></i></span><span> 
+&lt; 2<sup>16</sup></span></td>
+</tr>
+<tr>
+<td>
+<p>
+<span>MEDIUMBLOB</span><span>,
+</span>
+<span>MEDIUMTEXT</span></td>
+<td>
+<p><span><i>
+<span>L</span></i></span><span>+3</span>个字节，其中<span><i><span>L</span></i></span><span> 
+&lt; 2<sup>24</sup></span></td>
+</tr>
+<tr>
+<td>
+<p>
+<span>LONGBLOB</span><span>,
+</span>
+<span>LONGTEXT</span></td>
+<td>
+<p><span><i>
+<span>L</span></i></span><span>+4</span>个字节，其中<span><i><span>L</span></i></span><span> 
+&lt; 2<sup>32</sup></span></td>
+</tr>
+<tr>
+<td>
+<p>
+<span>ENUM(&#39;<i>value1</i>&#39;,&#39;<i>value2</i>&#39;,...)</span></td>
+<td>
+<p><span>1</span>或<span>2</span>个字节，取决于枚举值的个数<span>(</span>最多<span>65,535</span>个值<span>)</span></td>
+</tr>
+<tr>
+<td>
+<p>
+<span>SET(&#39;<i>value1</i>&#39;,&#39;<i>value2</i>&#39;,...)</span></td>
+<td>
+<p><span>1</span>、<span>2</span>、<span>3</span>、<span>4</span>或者<span>8</span>个字节，取决于<span>set</span>成员的数目<span>(</span>最多<span>64</span>个成员<span>)</span></td>
+</tr>
+</table>
 
 - 建表语句
 	
