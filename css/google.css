@@ -1252,20 +1252,20 @@ table {
 table.meng {
     color:#333333;
     border-width: 2px;
-    border-color: #D1E8FA;
+    border-color: #B7CBDB;
 }
 table.meng th {
     border-width: 2px;
     padding: 1px;
     border-style: solid;
-    border-color: #D1E8FA;
+    border-color: #B7CBDB;
     background-color: #dedede;
 }
 table.meng td {
     border-width: 2px;
     padding: 2px;
     border-style: solid;
-    border-color: #D1E8FA;
+    border-color: #B7CBDB;
 }
 /* #Basic Styles
 ================================================== */
