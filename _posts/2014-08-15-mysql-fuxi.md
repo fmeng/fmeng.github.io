@@ -8,6 +8,14 @@ categories:
 
 [http://dev.mysql.com/doc/refman/5.1/zh/column-types.html](http://dev.mysql.com/doc/refman/5.1/zh/column-types.html)
 
+	serial 
+	alias 别名
+	bigint unsigned not null auto_increment unique
+	
+	searial default value 
+	alias 别名
+	not null auto_increment unique
+
 ## 数据类型 ##
 
 
