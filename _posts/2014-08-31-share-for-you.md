@@ -90,3 +90,7 @@ ping， nmap， nc(netcat)，ifconfig traceroute tcpdump wireshark fiddler2<br/>
 
 
 &emsp;&emsp;cookie机制，不属于Http的规范。在http1.0的时候是没有，cookie控制的。只能使用一个胖胖的url来携带会话信息。
+
+会话cookie,  数据以**名-值**对的形式，保存在**内存**中。
+
+持久cookie， 数据以**名-值**对的形式，保存在**文件**中。
