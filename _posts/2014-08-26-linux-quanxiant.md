@@ -75,3 +75,27 @@ ls -l /usr/bin/locate
 同时也引起了不少麻烦。例如，即使我给tomcat的工作目录赋予合适的权限（RWX），但是tomcat在执行
 
 ## 网络安全配置 ##
+
+#### Net Filter ####
+
+&emsp;&emsp;主要是对数据包的首部进行过滤。<br/>
+&emsp;&emsp;过滤的数据包有：mac、ip、tcp、udp、icmp等。主要过滤OSI的2、3、4层。<br/>
+
+
+#### Tcp Wrappers ####
+
+&emsp;&emsp;**tcp wrappers通过客户端想要的程序的程序的文件名，分析客户端的ip，看看是否需要放行。**
+
+1. 分析什么样的程序--两种程序
+
+	1. 有super daemon（xinetd）所管理的服务。
+
+		查看由super deamon的服务 `ls /etc/xinetd.d` 或者 开启服务 `chkconfig xinetd on` 查看服务 `chkconfig --list`<br/>
+		`yum search xinetd`<br/>
+		安装xinetd服务 `yum install xinetd`
+		
+	2. 支持libwrap.so模块的服务。	
+
+2. 如何分析ip
+
+#### Iptables ####
