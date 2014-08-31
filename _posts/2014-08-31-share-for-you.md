@@ -34,7 +34,7 @@ categories:
 **自己电脑的主机ip地址显示**<br/>
 ![ip](/img/ip.jpg)<br/>
 ![ip](/img/ipconfig.jpg)<br/>
-![ip](/img/windows_ip_confifure.jpg)<br/>
+![ip](/img/windows_ip_configure.jpg)<br/>
 
 **浏览器访问流程**<br/>
 ![访问流程](/img/vist_web.png)<br/>
