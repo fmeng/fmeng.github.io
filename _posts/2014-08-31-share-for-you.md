@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "在CentOs上安装软件"
+title: "关于网络的一些事……"
 categories:
 - other
 ---
