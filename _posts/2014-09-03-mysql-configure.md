@@ -21,7 +21,7 @@ categories:
 
 #### 解压到指定目录 ####
 
-![解压到指定目录](img/zip_mysql.jpg)
+![解压到指定目录](/img/zip_mysql.jpg)
 
 #### 从my-default.ini生成配置文件 ####
 `my.ini`文件。
