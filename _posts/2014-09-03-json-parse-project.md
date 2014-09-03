@@ -14,13 +14,17 @@ commons-logging-1.1.1.jar<br/>
 ezmorph-1.0.3.jar<br/>
 json-lib-2.2.2-jdk15.jar<br/>
 
-#### 使用的对象： ####
+#### 代码分析 ####
 
 ![Button对象](/img/menu_uml.jpg)
 
+#### 内存分析 ####
+
 ![object](/img/object_menu.jpg)
 
-![object](/img/weixin_menu.jap)
+#### 效果展示 ####
+
+![object](/img/weixin_menu.jpg)
 
 #### 实现代码： ####
 
