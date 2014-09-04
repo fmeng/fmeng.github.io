@@ -1,16 +1,17 @@
 ---
 layout: post
-title: "配置DBCP"
+title: "普通配置DBCP"
 categories:
 - java
 ---
 
 #### 导入的jar包 ####
-
-	commons-dbcp2-2.0.0.jar
-	commons-pool.jar
-	commons.collections-3.2.1.jar
-	mysql-connector-java-5.1.28-bin.jar
+[jar包下载：](#)<br/>
+[http://pan.baidu.com/s/1kTHrtav](http://pan.baidu.com/s/1kTHrtav)<br/>
+	commons-dbcp2-2.0.0.jar<br/>
+	commons-pool.jar<br/>
+	commons.collections-3.2.1.jar<br/>
+	mysql-connector-java-5.1.28-bin.jar<br/>
 
 #### 使用的配置文件 ####
 
