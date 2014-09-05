@@ -13,7 +13,12 @@ categories:
 3. 在类初始化以前，配置文件的累要先被加载进来
 4. 不能多次读取配置文件，文件只能被加载一次
 5. 使用相对路径，用类加载器找到配置文件所在的目录
+
+## 使用方法 ##
 		
+&emsp;&emsp;`public static Properties getPropertie(String filename)`	
+&emsp;&emsp;`public static String getPropertyParam(String filename, String proterty)`
+
 		public class ConfigureProperties {
 			private static Map<String, Properties> fileNameAndProperties = new HashMap<>();
 			static {
