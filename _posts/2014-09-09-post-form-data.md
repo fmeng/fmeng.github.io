@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "如何使用HttpClient提交富媒体文件？"
-categoriesi:
+categories:
 - java
 ---
 
