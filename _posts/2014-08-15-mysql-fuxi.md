@@ -1056,6 +1056,10 @@ DECIMAL(和NUMERIC)的存储需求与具体版本有关：
 </tr>
 </table>
 
+#### SQL常用语句 ####
+
+[http://www.w3school.com.cn/sql/](http://www.w3school.com.cn/sql/)
+
 - 建表语句
 	
 		create table student（
