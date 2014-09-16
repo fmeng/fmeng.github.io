@@ -18,19 +18,20 @@ categories:
 3. 转义字符列表[http://www.cnblogs.com/lixin890808/p/3375678.html](http://www.cnblogs.com/lixin890808/p/3375678.html)
 <br/>
 [http://blog.csdn.net/risingwonderland/article/details/23794897](http://blog.csdn.net/risingwonderland/article/details/23794897)
-## 匹配单个字符 ##
+
+### 匹配单个字符 ###
 **在[]内的字符，只能匹配一个字符!**
 	
 <table class="meng">
-<tr><tb>字符</tb><tb>解释</tb></tr>
-<tr><tb>[a]</tb><tb>该个字符，匹配a</tb></tr>
-<tr><tb>[ab]</tb><tb>匹配a，或b</tb></tr>
-<tr><tb>[^a]</tb><tb>不匹配a</tb></tr>
-<tr><tb>[^a-z]</tb><tb>不匹配小写字母</tb></tr>
-<tr><tb>[0-9a-z]</tb><tb>不要用“|”</tb></tr>
+<tr><td>字符</td><td>解释</td></tr>
+<tr><td>[a]</td><td>该个字符，匹配a</td></tr>
+<tr><td>[ab]</td><td>匹配a，或b</td></tr>
+<tr><td>[^a]</td><td>不匹配a</td></tr>
+<tr><td>[^a-z]</td><td>不匹配小写字母</td></tr>
+<tr><td>[0-9a-z]</td><td>不要用“|”</td></tr>
 </table>
 
-## Grep去除空行，注释行 ##
+### Grep去除空行，注释行 ###
 
  `grep -v "^$"`不以结尾开头<br/>
  `grep -v "^#" ` 不一“#”开头<br/>

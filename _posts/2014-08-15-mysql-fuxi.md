@@ -33,7 +33,7 @@ categories:
 <tr><td>int</td><td>4</td><td>0</td><td>4294967295(40亿)</td></tr>
 <tr><td>bigint</td><td>8</td><td>-1000亿亿(20)</td><td>1000亿亿(20)</td></tr>
 <tr><td>bigint</td><td>8</td><td>0</td><td>21474836472000亿亿(20)</td></tr>
-<table>
+</table>
 *****
 unsigned 代表无符号，zerofill代表零填充 ,smallint(2)2代表零填充的宽度。
 只有在无符号位时，零填充才有效。
@@ -49,7 +49,7 @@ unsigned 代表无符号，zerofill代表零填充 ,smallint(2)2代表零填充�
 <tr><td>float(m,d)</td><td>&nbsp;</td><td>0.00</td><td>2万</td></tr>
 <tr><td>decimal(m,d)</td><td>4/8</td><td>-9999.99</td><td>9999.99(2万)</td></tr>
 <tr><td>decimal(m,d)</td><td>&nbsp;</td><td>0.00</td><td>2万</td></tr>
-<table>
+</table>
 ****
 float(m,d)m代表精度（总共有多少位，不含小数点），d代表小数位数。
 float,decimal都能表示小数，但是decimal更精确一点。
