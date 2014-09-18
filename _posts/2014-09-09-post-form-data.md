@@ -120,3 +120,17 @@ categories:
 	
 	}
 
+
+## 提交文本文件 ##
+
+		// 设置提交的实体
+		HttpPost httpPost = new HttpPost(url);
+		//构造实体
+		EntityBuilder b = EntityBuilder.create();
+		b.setText(responseMessage);
+		HttpEntity entity = b.build();
+		//
+		httpPost.setEntity(entity);
+		httpPost.setHeader("Content-Type", "application/x-www-form-urlencoded");
+		String mm = EntityUtils.toString(entity, "UTF-8");
+
