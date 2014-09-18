@@ -4,7 +4,7 @@ title: "HttpClient Post文本文件乱码问题"
 categories:
 - java
 ---
-	![](img/http_client.jpg)
+![](/img/http_client.jpg)
 
 ----
 
@@ -42,7 +42,7 @@ categories:
 		}
 
 ----
-![](img/http_entity.jpg)
+![](/img/http_entity.jpg)
 
 ## 总结： ##
 

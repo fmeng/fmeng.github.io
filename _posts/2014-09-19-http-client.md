@@ -15,13 +15,13 @@ categories:
 [Tutorial](#)<br/>
 &emsp;&emsp;[http://hc.apache.org/httpcomponents-client-ga/tutorial/html/](http://hc.apache.org/httpcomponents-client-ga/tutorial/html/)<br/>
 [Blogs](#)<br/>
-&emsp;&emsp;Demo for httpClient: &emsp;&emsp;[http://www.baeldung.com/httpclient-guide](http://www.baeldung.com/httpclient-guide)<br/>
-&emsp;&emsp; Chinese blog for httpclient api &emsp;&emsp;[http://www.cnblogs.com/loveyakamoz/category/311258.html](http://www.cnblogs.com/loveyakamoz/category/311258.html)<br/>
+&emsp;&emsp;[Demo for httpClient](http://www.baeldung.com/httpclient-guide)<br/>
+&emsp;&emsp;[Chinese Tutorial](http://www.cnblogs.com/loveyakamoz/category/311258.html)<br/>
 &emsp;&emsp;[http://www.yeetrack.com/?p=773](http://www.yeetrack.com/?p=773)<br/>
-&emsp;&emsp;Upload and download file &emsp;&emsp;[http://www.cnblogs.com/Scott007/p/3817285.html](http://www.cnblogs.com/Scott007/p/3817285.html)<br/>
+&emsp;&emsp;[Upload and download file](http://www.cnblogs.com/Scott007/p/3817285.html)<br/>
 &emsp;&emsp;[MyBlog](#)<br/>
-&emsp;&emsp;&emsp;&emsp;[HttpClient提交富媒体文件]([http://www.fmeng.name/java/2014/09/09/post-form-data.html)
-&emsp;&emsp;&emsp;&emsp;<br/>
+&emsp;&emsp;&emsp;&emsp;[HttpClient提交富媒体文件]([http://www.fmeng.name/java/2014/09/09/post-form-data.html)<br/>
+&emsp;&emsp;&emsp;&emsp;[HttpClient Post文本文件乱码问题](http://www.fmeng.name/java/2014/09/18/encoder-httpClient-post.html)
 
 [MyFiles](#)<br/>
 &emsp;&emsp;里面有相关的Jar和Src和Tutorial&emsp;&emsp;[Click Here To Download](http://pan.baidu.com/s/1jJXRw)
