@@ -17,19 +17,10 @@ categories:
 [路由器的启动流程--流程图](#line_map)<br/>
 [路由器配置信息的来源](config_info)<br/>
 [NVROM中的16个字节](#nvrom)<br/>
-
-<a name="tcp_ip" id="tcp_ip"></a>
-<a href="/img/tcp_ip.jpg"></a>
-![](/img/tcp_ip.jpg)
-<a name="lan" id="lan"></a>
-<a href="/img/1_lan物理层的连接.jpg"></a>
-![](/img/1_lan物理层的连接.jpg)
-<a name="media" id="media"></a>
-<a href="/img/2_以太网介质比较.jpg"></a>
-![](/img/2_以太网介质比较.jpg)
-<a name="1" id="1"></a>
-<a href="/img/路由器的连接接口_1.jpg"></a>
-![](/img/路由器的连接接口_1.jpg)
+<a name="tcp_ip" id="tcp_ip" href="/img/tcp_ip.jpg">![](/img/tcp_ip.jpg)</a>
+<a name="lan" id="lan" href="/img/1_lan物理层的连接.jpg">![](/img/1_lan物理层的连接.jpg)</a>
+<a name="media" id="media" href="/img/2_以太网介质比较.jpg">![](/img/2_以太网介质比较.jpg)</a>
+<a name="1" id="1" href="/img/路由器的连接接口_1.jpg">![](/img/路由器的连接接口_1.jpg)</a>
 <a name="2" id="2"></a>
 <a href="/img/路由器的连接接口_2.jpg"></a>
 ![](/img/路由器的连接接口_2.jpg)
