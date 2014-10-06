@@ -21,21 +21,9 @@ categories:
 <a name="lan" id="lan" href="/img/1_lan物理层的连接.jpg">![](/img/1_lan物理层的连接.jpg)</a>
 <a name="media" id="media" href="/img/2_以太网介质比较.jpg">![](/img/2_以太网介质比较.jpg)</a>
 <a name="1" id="1" href="/img/路由器的连接接口_1.jpg">![](/img/路由器的连接接口_1.jpg)</a>
-<a name="2" id="2"></a>
-<a href="/img/路由器的连接接口_2.jpg"></a>
-![](/img/路由器的连接接口_2.jpg)
-<a name="3" id="3"></a>
-<a href="/img/路由器的连接接口_3.jpg"></a>
-![](/img/路由器的连接接口_3.jpg)
-<a name="setup" id="setup"></a>
-<a href="/img/思科路由器硬件和启动流程.png"></a>
-![](/img/思科路由器硬件和启动流程.png)
-<a name="line_map" id="line_map"></a>
-<a href="/img/路由器的启动流程.jpg"></a>
-![](/img/路由器的启动流程.jpg)
-<a name="config_info" id="config_info"></a>
-<a href="/img/路由器配置信息的来源.jpg"></a>
-![](/img/路由器配置信息的来源.jpg)
-<a name="nvrom" id="nvrom"></a>
-<a href="/img/nvrom中的16个字节.jpg"></a>
-![](/img/nvrom中的16个字节.jpg)
+<a name="2" id="2" href="/img/路由器的连接接口_2.jpg">![](/img/路由器的连接接口_2.jpg)</a>
+<a name="3" id="3" href="/img/路由器的连接接口_3.jpg">![](/img/路由器的连接接口_3.jpg)</a>
+<a name="setup" id="setup" href="/img/思科路由器硬件和启动流程.png">![](/img/思科路由器硬件和启动流程.png)</a>
+<a name="line_map" id="line_map" href="/img/路由器的启动流程.jpg">![](/img/路由器的启动流程.jpg)</a>
+<a name="config_info" id="config_info" href="/img/路由器配置信息的来源.jpg">![](/img/路由器配置信息的来源.jpg)</a>
+<a name="nvrom" id="nvrom" href="/img/nvrom中的16个字节.jpg">![](/img/nvrom中的16个字节.jpg)</a>
