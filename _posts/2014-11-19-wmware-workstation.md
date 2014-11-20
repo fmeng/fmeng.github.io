@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "玩转Wmware Workstation 10.0"
+title: "Wmware Workstation 10.0 网络设置"
 categories:
 - other
 ---
