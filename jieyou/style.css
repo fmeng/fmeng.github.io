@@ -13,7 +13,7 @@ p { font:normal 14px Arial}
 .header_resize img { float:right; margin:0; padding:20px 0 0 0;}
 
 /*菜单*/
-.menu_nav { float:right; width:400px; margin:0; padding:5px 0 0 0; }
+.menu_nav { float:right; width:500px; margin:0; padding:5px 0 0 0; }
 .menu_nav ul { list-style:none; padding:0; margin:0; }
 .menu_nav li { float:left; padding:0 5px; }
 .menu_nav li a { font:normal 13px Arial; color:#cfd1d0; display:block; float:left; padding:10px 8px 14px 8px; }
