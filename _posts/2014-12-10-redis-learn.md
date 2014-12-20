@@ -4,7 +4,19 @@ title: "Redis学习笔记"
 categories:
 - linus
 ---
+1. <a href="#links">相关链接</a>
+2. <a href="#about">简介和应用</a>
+3. <a href="#redis.conf">redis配置</a>
+4. <a href="#string">数据类型string</a>
+5. <a href="#hashs">数据类型hashs</a>
+6. <a href="#list">数据类型list</a>
+7. <a href="#sets">数据类型sets</a>
+8. <a href="#zsets">数据类型zsets</a>
+9. <a href="#key">key-value命令</a>
+10. <a href="#server">server相关命令</a>
+11. <a href="#sumup">总结</a>
 
+<a name="links"></a>
 redis:
 
 1. [http://www.redis.cn/](http://www.redis.cn/)
@@ -16,7 +28,7 @@ jedis:
 2. [http://tool.oschina.net/apidocs/apidoc?api=jedis-2.1.0](http://tool.oschina.net/apidocs/apidoc?api=jedis-2.1.0)
 4. [http://flyingsnail.blog.51cto.com/5341669/1371650](http://flyingsnail.blog.51cto.com/5341669/1371650)
 5. [http://www.cnblogs.com/liuling/p/2014-4-19-04.html](http://www.cnblogs.com/liuling/p/2014-4-19-04.html)
-
+<a name="about"></a>
 ## 简介： ##
 &emsp;&emsp;Redis是一个开源的，先进的key-value存储。它通常被称为**数据结构服务器**，因为键可以包含**字符串**、**哈希**、**链表****、集合、****有序集合**。
 
@@ -31,12 +43,12 @@ jedis:
 8. 构建队列系统
 6. 缓存
 
-
+<a name="redis.conf"></a>
 ## Redis配置参数详解 ##
 
 [http://www.cnblogs.com/wenanry/archive/2012/02/26/2368398.html](http://www.cnblogs.com/wenanry/archive/2012/02/26/2368398.html)
 ## 数据类型 ##
-
+<a href="string"></a>
 ## 1.String ##
 
 > string 类型的变量是二进制安全的，也就是可以存放二进制数据。
@@ -117,7 +129,7 @@ jedis:
 		strlen name
 		5
 		#计算指定字符的长度
-
+<a name="hashs"></a>
 ## 2.Hashs ##
 
 > Redis的hash是一个String类型的field和value的映射表。它的添加和删除操作都是O(1) 。
@@ -187,7 +199,7 @@ hashs特别适用于存储对象。对象的每个属性存储成单个String。
 		hgetall hash
 		#hash中的key和value会一同列出来
 
-
+<a name="list"></a>
 ## 3.List ##
 
 >list是一个链表结构，主要功能push、pop、获取一个范围内的所有值等等。**操作中的key理解为链表的名字**redis的list其实就是一个双向链表。我们可以push、pop操作list的头部和尾部，实现数据结构上的栈和队列。
@@ -264,7 +276,7 @@ hashs特别适用于存储对象。对象的每个属性存储成单个String。
 
 ----
 
-
+<a href="sets"></a>
 ## 4.sets ##
 
 > **sets是集合，没有顺序，不允许有重复值**，它是String类型的无序集合。sets是通过hash table实现，添加、删除、查找的复杂度都是o（1）。对sets的操作有：并集、交集、差集。
@@ -351,7 +363,7 @@ hashs特别适用于存储对象。对象的每个属性存储成单个String。
 
 ----
 
-		
+<a name="zsets"></a>	
 ## 5. zsets ##
 
 >sorte sets是sets的一个升级版本，它在set的基础上增加了**顺序的属性**。这个属性，在添加、修改的时候可以指定。每次指定这个顺序属性后，zsets会自动调整集合的顺序。可以把zsets理解为两列的mysql表，一列为顺序、一列为value。
@@ -411,7 +423,7 @@ hashs特别适用于存储对象。对象的每个属性存储成单个String。
 	[http://www.redis.cn/commands/zrangebyscore.html](http://www.redis.cn/commands/zrangebyscore.html)
 
 -----
-
+<a name="key"></a>
 ## 键值相关命令 ##
 
 1. keys 
@@ -461,7 +473,7 @@ hashs特别适用于存储对象。对象的每个属性存储成单个String。
 
 
 -----
-
+<a name="server"></a>
 ## 服务器相关命令 ##
 
 1. dbsize
@@ -481,7 +493,7 @@ hashs特别适用于存储对象。对象的每个属性存储成单个String。
 		flushall
 		#删除所有库中的所有key
 
-
+<a namem="sumup"></a>
 ## 总结： ##
 
 &emsp;&emsp;新知识么，都是摸着石头过河。当让要先从基础的知识点入手了。先把一个一个的命令过一遍再说吧。在学习命令的过程中要善于把抽象的某型，具体化，深刻记忆。
