@@ -6,11 +6,11 @@ categories:
 ---
 1. <a href="#self">安全性</a>
 2. <a href="#copy">主从复制</a>
-3. <a href="#even">事务处理</a>
+3. <a href="#event">事务处理</a>
 4. <a href="#sync">持久化机制</a>
-5. <a href="sub">发布订阅消息</a>
-6. <a href="vm">虚拟内存的使用</a>
-7. <a href="sumup">总结</a>
+5. <a href="#sub">发布订阅消息</a>
+6. <a href="#vm">虚拟内存的使用</a>
+7. <a href="#sumup">总结</a>
 
 <a name="self"></a>
 ## 安全性 ##
