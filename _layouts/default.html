@@ -27,20 +27,24 @@
 <![endif]-->
 </head>
 <body>
-  <div class="container">
-    <div class="four columns sidebar">
-      {% include sidebar.html %}
-    </div>
-
-    <div class="eleven columns content">
-      {{ content }}
-
-      <div class="footer">
-        {% include footer.html %}
-      </div>
-    </div>
-  </div>
-{% include backup.html %}
-{% include analytics.html %}
+	<div class="page-body">
+	  <div class="container">
+	    <div class="four columns sidebar">
+	      {% include sidebar.html %}
+	    </div>
+	
+	    <div class="eleven columns content">
+	      {{ content }}
+	
+	      <div class="footer">
+	        {% include footer.html %}
+	      </div>
+	    </div>
+	  </div>
+		<!--返回顶部-->
+		{% include backup.html %}
+		<!--百度统计-->
+		{% include analytics.html %}
+</div>
 </body>
 </html>
