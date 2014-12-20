@@ -1,18 +1,38 @@
-a {
+
+#feedback a {
 	background: 0 0
 }
-a:active, a:hover {
+#feedback a:active, a:hover {
 	outline: 0
 }
-a {
+#feedback a {
 	text-decoration: none;
 	color: #2578bf
 }
-a:focus, a:hover {
+#feedback a:focus, a:hover {
 	text-decoration: underline;
 	color: #00a0e9
 }
-a:focus {
+#feedback a:focus {
+	outline: -webkit-focus-ring-color auto 5px;
+	outline-offset: -2px
+}
+
+#scrollUp a {
+	background: 0 0
+}
+#scrollUp a:active, a:hover {
+	outline: 0
+}
+#scrollUp a {
+	text-decoration: none;
+	color: #2578bf
+}
+#scrollUp a:focus, a:hover {
+	text-decoration: underline;
+	color: #00a0e9
+}
+#scrollUp a:focus {
 	outline: -webkit-focus-ring-color auto 5px;
 	outline-offset: -2px
 }
