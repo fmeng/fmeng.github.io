@@ -11,8 +11,6 @@
   <meta name="author" content="fmeng" />
   <meta name="description" content="linux java git mysql" />
   <link href="/css/zzsc.css" rel="stylesheet" type="text/css">
-	<script src="text/javascript" href="/js/jquery-1.8.3.min.js" type="javascript"></script>
-	<script src="text/javascript" href="/js/zzsc.js" type="javascript"></script>
   <link href="/css/google.css" rel="stylesheet" type="text/css">
   <link rel="shortcut icon" href="/img/favicon.png">
   <link rel="alternate" type="application/rss+xml" title="Matt Swanson" href="{{site.baseurl}}/atom.xml" />
@@ -27,24 +25,24 @@
 <![endif]-->
 </head>
 <body>
-	<div class="page-body">
-	  <div class="container">
-	    <div class="four columns sidebar">
-	      {% include sidebar.html %}
-	    </div>
-	
-	    <div class="eleven columns content">
-	      {{ content }}
-	
-	      <div class="footer">
-	        {% include footer.html %}
-	      </div>
-	    </div>
-	  </div>
-		<!--返回顶部-->
-		{% include backup.html %}
-		<!--百度统计-->
-		{% include analytics.html %}
-</div>
+  <div class="container">
+    <div class="four columns sidebar">
+      {% include sidebar.html %}
+    </div>
+
+    <div class="eleven columns content">
+      {{ content }}
+
+      <div class="footer">
+        {% include footer.html %}
+      </div>
+    </div>
+  </div>
+	<!--返回顶部-->
+	<script src="text/javascript" href="/js/jquery-1.8.3.min.js" type="javascript"></script>
+	<script src="text/javascript" href="/js/zzsc.js" type="javascript"></script>
+	{% include backup.html %}
+	<!--百度统计-->
+	{% include analytics.html %}
 </body>
 </html>
