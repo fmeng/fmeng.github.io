@@ -4,8 +4,15 @@ title: "Redis高级应用"
 categories:
 - linus
 ---
+1. <a href="#self">安全性</a>
+2. <a href="#copy">主从复制</a>
+3. <a href="#even">事务处理</a>
+4. <a href="#sync">持久化机制</a>
+5. <a href="sub">发布订阅消息</a>
+6. <a href="vm">虚拟内存的使用</a>
+7. <a href="sumup">总结</a>
 
-
+<a name="self"></a>
 ## 安全性 ##
 &emsp;&emsp;**因为Redis的处理速度非常快。所以，我们要设置一个比较长、比较复杂的认证密码。**
 
@@ -15,6 +22,8 @@ categories:
 	redis-cli -a fmeng
 	#或者进入redis-cli客户端
 	auth fmeng
+
+<a name="copy"></a>
 ## 主从复制 ##
 
 &emsp;&emsp;实现多个slave server和master server实现数据同步。**只需要在从服务上的配置文件中修改相关的参数即可。**
@@ -28,6 +37,7 @@ categories:
 		#指定master主机的ip和端口
 		echo "slaveof ip 6379" >> /path/to/redis.conf
 
+<a name="event"></a>
 ## 事务处理 ##
 &emsp;&emsp;Redis的事务处理的支持不是很完善。**不能回滚，事务处理中的某个操作。**
 
@@ -61,6 +71,8 @@ categories:
 3. **只能在`multi`代码执行的前面执行`unwatch`才有效。在multi和exec之间不生效！**
 4. `discard`可以再`multi`之后，`exec`之前清除事务。**如果之前设置了watch，不会对下次的事务有影响！**
 5. **watch只能绑定在本链接中的，挨着它最近的事务。无论事务执行成功与否，watch都不会对下次事务产生影响。**
+
+<a name="sync"></a>
 ## 持久化机制 ##
 >redis的数据存在内存中是不安全的。我们可以采取一种机制，把内存中的数据同步到硬盘中。这就是redis的持久化机制。
 
@@ -91,6 +103,7 @@ categories:
 		appendfsync no
 	
 	优缺点：这种配置内存中数据的同步化方式，虽然灵活，但是命令都是以明文的形式保存到appendonly.aof文件中的，有安全性忧患。
+<a name="sub"></a>
 ## 发布订阅消息 ##
 >发布订阅（publish/subscribe）是一种消息通讯模式，主要的目的是消除发布者和订阅者之间的耦合。redis可以作为一个pub/sub的sever，在订阅者和发布者起到一个消息路由的作用。**发布者设置channle(频道)让订阅的接受信息，订阅者则可以监听发布者提供的频道的状态。**
 
@@ -135,6 +148,7 @@ categories:
 		unsubscribe channle1
 
 通过(pub/sub),可以实现简单的聊天系统。
+<a name="vm"></a>
 ## 虚拟内存的使用 ##
 
 目的：节省内存、提高性能。<br/>
@@ -150,7 +164,7 @@ categories:
 	vm-max-thread 4        #用于执行硬盘换入的线程数量
 
 
-
+<a name="sumup"></a>
 ## 总结 ##
 
 &emsp;&emsp;redis的高级性能，部分功能还不是很成熟。例如，redis的事务支持，不能自动回滚。同时，我觉的redis在安全方面做的还不够，这样就依赖其他防火墙设置必要的安全措施。
