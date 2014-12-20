@@ -29,6 +29,7 @@ jedis:
 4. [http://flyingsnail.blog.51cto.com/5341669/1371650](http://flyingsnail.blog.51cto.com/5341669/1371650)
 5. [http://www.cnblogs.com/liuling/p/2014-4-19-04.html](http://www.cnblogs.com/liuling/p/2014-4-19-04.html)
 <a name="about"></a>
+
 ## 简介： ##
 &emsp;&emsp;Redis是一个开源的，先进的key-value存储。它通常被称为**数据结构服务器**，因为键可以包含**字符串**、**哈希**、**链表****、集合、****有序集合**。
 
@@ -48,7 +49,7 @@ jedis:
 
 [http://www.cnblogs.com/wenanry/archive/2012/02/26/2368398.html](http://www.cnblogs.com/wenanry/archive/2012/02/26/2368398.html)
 ## 数据类型 ##
-<a href="string"></a>
+<a name="string"></a>
 ## 1.String ##
 
 > string 类型的变量是二进制安全的，也就是可以存放二进制数据。
@@ -276,7 +277,7 @@ hashs特别适用于存储对象。对象的每个属性存储成单个String。
 
 ----
 
-<a href="sets"></a>
+<a name="sets"></a>
 ## 4.sets ##
 
 > **sets是集合，没有顺序，不允许有重复值**，它是String类型的无序集合。sets是通过hash table实现，添加、删除、查找的复杂度都是o（1）。对sets的操作有：并集、交集、差集。
@@ -493,7 +494,7 @@ hashs特别适用于存储对象。对象的每个属性存储成单个String。
 		flushall
 		#删除所有库中的所有key
 
-<a namem="sumup"></a>
+<a name="sumup"></a>
 ## 总结： ##
 
 &emsp;&emsp;新知识么，都是摸着石头过河。当让要先从基础的知识点入手了。先把一个一个的命令过一遍再说吧。在学习命令的过程中要善于把抽象的某型，具体化，深刻记忆。
