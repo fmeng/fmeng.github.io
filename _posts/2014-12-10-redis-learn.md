@@ -22,6 +22,8 @@ redis:
 1. [http://www.redis.cn/](http://www.redis.cn/)
 3. [http://redisbook.readthedocs.org/en/latest/](http://redisbook.readthedocs.org/en/latest/)
 4. 链接：[http://pan.baidu.com/s/1qW0U4PY](http://pan.baidu.com/s/1qW0U4PY) 密码：7zyr
+5. 学习笔记：<br/>
+链接：[http://pan.baidu.com/s/1kTBoSvX](http://pan.baidu.com/s/1kTBoSvX) 密码：tfaf
 
 jedis:
 
