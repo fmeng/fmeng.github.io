@@ -6,7 +6,6 @@ categories:
 ---
 
 1. links：<br/>	
-
 	- [https://github.com/sitaramc/gitolite/wiki](https://github.com/sitaramc/gitolite/wiki)
 	- [https://github.com/sitaramc/gitolite](https://github.com/sitaramc/gitolite)**<这个参考很重要！！！！>**
 	- [http://www.ossxp.com/doc/git/gitolite.html](http://www.ossxp.com/doc/git/gitolite.html)
