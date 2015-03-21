@@ -9,7 +9,7 @@ categories:
 
 2. 安装ruby环境
 
-	yum install -y ruby rubygems ruby-devle
+		yum install -y ruby rubygems ruby-devle 
 3. Gem修改国内的源
 	
 		gem sources --remove https://rubygems.org/
