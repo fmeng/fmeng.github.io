@@ -5,40 +5,52 @@ categories:
 - java
 ---
 
-[]()<br/>
-[]()
-#### <a href="#1">步骤1--安装</a> ####
-1. <a href="#1">在先安装</a>
-2. <a href="#12">下载安装</a>
-#### <a href="#2">步骤2--配置</a> ####
-### <a name="1"></a>下载安装 ###
-1. 第一种方法（要翻墙）
-	-->Help<br />
-	-->Install on site...(等待时间较长)<br />
-	-->Work with(填写表单内容)<br /> 
-	Properties Editor - http://propedit.sourceforge.jp/eclipse/updates/<br/>
-	-->**choose**<br/>
-	Properties Editor
-	--> Finish <br/>
-	-->Restart Myeclipse
+[https://yq.aliyun.com/articles/49622](https://yq.aliyun.com/articles/49622)<br/>
+[http://blog.csdn.net/readiay/article/details/51488339](http://blog.csdn.net/readiay/article/details/51488339)
+#### <a href="#1">1. 什么是Serializable接口？</a> ####
+#### <a href="#2">2. 为什么要有序列化？</a> ####
+#### <a href="#3">3. 既然Serializable中没有方法，为什么不将所有类都默认序列化？</a> ####
+#### <a href="#4">4. 序列化ID的问题 serialVersionUID</a> ####
+#### <a href="#5">5. 需要注意的问题</a> ####
+###<a name="1"></a>1. 什么是Serializable接口？###
+<b>标识接口。</b>在Java语言中，有些接口内部没有声明任何方法，也就是说实现这些接口的类不需要重写任何方法，这些没有任何方法声明的接口又被叫做标识接口，标识接口对实现它的类没有任何语义上的要求，它仅仅充当一个标识的作用，用来表明实现它的类属于一个特定的类型。
 
-2. 第二中方法
-<a name="12"></a>
-	-->下载<br/>
-	链接：[http://pan.baidu.com/s/1ezpHs](http://pan.baidu.com/s/1ezpHs) 密码：pg7s<br/>
-	-->右键打开Myeclipse的安装目录<br/>
-	-->mkdir dropins<br />
-	-->copy features and plugins unzip by download file to "path-to-dropins"
-	-->Restart Myeclipse 
-###<a name="1"></a> 设置默认文件 ###
+Java 提供了一种对象序列化的机制，该机制中，<b>一个对象可以被表示为一个字节序列</b>，该字节序列包括该对象的数据、有关对象的类型的信息和存储在对象中数据的类型。
 
--->Windows<br />
--->Perferences<br />
--->General<br />
--->Editor<br />
--->File Associations<br />
--->**Choose**<br />
-*.properties<br />
--->**Choose**<br />
-PropertiesEditor(default)<br />
--->Ok<br />
+将序列化对象写入文件之后，可以从文件中读取出来，并且对它进行反序列化，也就是说，对象的类型信息、对象的数据，还有对象中的数据类型可以用来在内存中新建对象。
+
+<b>整个过程都是Java虚拟机（JVM）独立的</b>，也就是说，在一个平台上序列化的对象可以在另一个完全不同的平台上反序列化该对象。 
+类的可序列化通过类实现 java.io.Serializable接口来实现。没有实现这个接口的类将没有序列化或反序列化这两个状态。一个序列化类的子类（subtype）它们自己也是序列化的
+
+。序列化接口没有方法或值，实现它仅仅是为了表示序列化的含义。
+###<a name="2"></a>2. 为什么要有序列化？###
+1. 把的内存中的对象状态保存到一个文件中或者数据库中时候
+2. 用套接字在网络上传送对象的时候
+3. 当你想通过RMI传输对象的时候(可以基于序列加密)
+>1. 在程序运行过程中，所有的对象都是在内存中。当运行结束时，对象所占的内存被操作系统回收。程序就像是忘记了它运行时发生的所有事一样。序列化正好解决了这个问题，通过保存对象到磁盘上，因此它可以在下次开始时重新读取。Java平台允许我们在内存中创建可复用的Java对象，但一般情况下，只有当JVM处于运行时，这些对象才可能存在，即，这些对象的生命周期不会比JVM的生命周期更长。但在现实应用中，就可能**要求在JVM停止运行之后能够保存(持久化)指定的对象**，并在将来重新读取被保存的对象。Java对象序列化就能够帮助我们实现该功能。
+
+>2. **方便传输和持久化**：序列化是将对象转化成能被存储的格式（例如文件或内存缓存或在网络连接中传输）。这种机制允许你将对象通过网络进行传播，并可以随时把对象持久化到数据库、文件等系统里。
+###<a name="3"></a>3. 既然Serializable中没有方法，为什么不将所有类都默认序列化？###
+1. 有些对象只在jvm运行时有意义，在上链接上下文是并没有实际意义。例如，一个**Thread对象和当前的JVM的状态有关,只在运行的时候有意义**，反序列化的Thread对象没有了保持有用的语义的上下文环境了(Context)。
+2. 虽然序列化是jvm自动完成的，但是要考虑不同版本jvm之间的兼容性。
+3. **序列化允许访问非短暂的、私有的类的成员！！！**，原本是不能被访问的，包含敏感信息（如密码password）的类不应该被序列化 或 externalizable。
+###<a name="4"></a>4. 序列化ID的问题 serialVersionUID###
+有一个异常：`java.io.InvalidClassException:  stream classdesc serialVersionUID = 5835067920559730690, 
+local class serialVersionUID = 583506792055970690`
+
+这个异常发生在反序列化的时候，为什么有这个异常呢？
+
+>虚拟机是否允许反序列化，不仅取决于类路径和功能代码是否一致，一个非常重要的一点是两个类的序列化 ID 是否一致（就是 private static final long serialVersionUID = 1L）。**由于上下文的序列化 ID 不同，无法相互序列化和反序列化。也就导致异常抛出。**
+      
+序列化 ID 在 Eclipse 下提供了两种生成策略，**一个是固定的、默认的 1L（建议使用）**，一个是随机生成一个不重复的 long 类型数据（实际上是使用 JDK 工具生成）。
+
+>在这里有一个建议，如果没有特殊需求，就是用默认的 1L 就可以，这样可以确保代码一致时反序列化成功。那么随机生成的序列化 ID 有什么作用呢，有些时候，通过改变序列化 ID 可以用来限制某些用户的使用。比如：修改了服务端类的序列化id之后，只有与服务端保持一致序列化id的那些客户端才能调用。不过一般没有人这么做。
+
+###<a name="5"></a>5. 需要注意的问题###
+1. 序列化保存的是对象的状态。静态变量属于类的状态，序列化并不保存静态变量。
+2. 其实`transient`这个关键字的作用就是使字段不被序列化
+3. 对敏感字段的加密。用户自定义的`writeObject`和`readObject`方法可以允许用户控制序列化的过程，而非系统强制制定序列算法。
+3. 单例模式与序列化。可序列化、逆序列化过程，**类所在的包必须是`public`或`protected`；该类中有一个无参构造方法，因为在反序列化的时候会使用无参构造函数**单例模式构造函数为`private`，对外不可见，不能序列化。
+
+	解决方法：定义的枚举类中添加：`private Object readResove(){return INSTANCE}`,这样就可以使用通过该函数实现构造一个对象了，代替了构造函数的功能。
+4. java虽然提供了很好的序列化，但是序列化之后的文件还是比较大的。xml、json、Gson（google）、FastJson（阿里巴巴）、protobuf可用于序列化。
