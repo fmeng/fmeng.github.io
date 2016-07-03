@@ -44,6 +44,7 @@ categories:
 		}
 	}
 
+--------
 含有抽象方法的枚举类型：
 
 	public class EnumDemo {
