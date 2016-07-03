@@ -17,32 +17,32 @@ categories:
 2. 所要表达的量是可以被列举的，只初始化一次且不可改变
 3. java 1.5前用静态常量表示枚举（其被列举的数量是不能控制的！），1.5以后使用枚举类型表示
 ### <a name="2"></a>2.Java使用枚举的语法 ###
-	enum Mounth {
-		// 1.相当于，Mounth类继承了enum类。使用继承enum类的Mounth类实例化对象
-		Jan(1), Feb(2), Mar(3), Apr(4), May(5), Jun(6), Jul(7), Aug(8), Sep(9), Oct(
-				10), Nov(11), Dec(12);
-		private int num;
-	
-		// 2.父类的构造方法被重写，只能使用这个构造方法构建对象，必须传参数！
-		// 3.重写的构造函数必须为private，因为enum类中为private，该类继承了enum类
-		// 构造器只能私有private，绝对不允许有public构造器,保证枚举类不可在类外实例化
-		private Mounth(int num) {
-			this.num = num;
+		enum Mounth {
+			// 1.相当于，Mounth类继承了enum类。使用继承enum类的Mounth类实例化对象
+			Jan(1), Feb(2), Mar(3), Apr(4), May(5), Jun(6), Jul(7), Aug(8), Sep(9), Oct(
+					10), Nov(11), Dec(12);
+			private int num;
+		
+			// 2.父类的构造方法被重写，只能使用这个构造方法构建对象，必须传参数！
+			// 3.重写的构造函数必须为private，因为enum类中为private，该类继承了enum类
+			// 构造器只能私有private，绝对不允许有public构造器,保证枚举类不可在类外实例化
+			private Mounth(int num) {
+				this.num = num;
+			}
+		
+			public int getNum() {
+				return this.num;
+			}
 		}
-	
-		public int getNum() {
-			return this.num;
+		
+		public class Demo {
+			public static void main(String[] args) {
+				// 4.Feb为Mounth的静态常量
+				Mounth e = Mounth.Feb;
+				int i = e.getNum();
+				System.out.println(i);
+			}
 		}
-	}
-	
-	public class Demo {
-		public static void main(String[] args) {
-			// 4.Feb为Mounth的静态常量
-			Mounth e = Mounth.Feb;
-			int i = e.getNum();
-			System.out.println(i);
-		}
-	}
 
 --------
 含有抽象方法的枚举类型：
