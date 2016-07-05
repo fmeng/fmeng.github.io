@@ -4,3 +4,5 @@ pygments: true
 markdown: redcarpet
 baseurl: "/" 
 exclude: ["CNAME", "README.md", "Rakefile", "generate.py"]
+highlighter: rouge
+pygments: false
