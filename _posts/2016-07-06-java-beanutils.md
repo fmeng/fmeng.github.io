@@ -12,48 +12,48 @@ categories:
 2. 当一个对象中的变量数量未知时，要访问所有的变量可以使用内省。
 </b></font>
 ---
-	package com.fmeng.reflect.test;
-	
-	import java.util.Date;
-	
-	public class PersonBean {
-		private String name;
-		private String password;
-		private int age;
-		private Date birthday;
-	
-		public Date getBirthday() {
-			return birthday;
+		package com.fmeng.reflect.test;
+		
+		import java.util.Date;
+		
+		public class PersonBean {
+			private String name;
+			private String password;
+			private int age;
+			private Date birthday;
+		
+			public Date getBirthday() {
+				return birthday;
+			}
+		
+			public void setBirthday(Date birthday) {
+				this.birthday = birthday;
+			}
+		
+			public String getName() {
+				return name;
+			}
+		
+			public void setName(String name) {
+				this.name = name;
+			}
+		
+			public String getPassword() {
+				return password;
+			}
+		
+			public void setPassword(String password) {
+				this.password = password;
+			}
+		
+			public int getAge() {
+				return age;
+			}
+		
+			public void setAge(int age) {
+				this.age = age;
+			}
 		}
-	
-		public void setBirthday(Date birthday) {
-			this.birthday = birthday;
-		}
-	
-		public String getName() {
-			return name;
-		}
-	
-		public void setName(String name) {
-			this.name = name;
-		}
-	
-		public String getPassword() {
-			return password;
-		}
-	
-		public void setPassword(String password) {
-			this.password = password;
-		}
-	
-		public int getAge() {
-			return age;
-		}
-	
-		public void setAge(int age) {
-			this.age = age;
-		}
-	}
 
 
 ----
@@ -106,6 +106,7 @@ categories:
 			BeanUtils.setProperty(pb, "name", name);
 			BeanUtils.setProperty(pb, "password", password);
 			BeanUtils.setProperty(pb, "age", age);
+			// BeanUtils只支持8中类型的数据类型转换，为了正确转换城日期类型，要注册转换器转换日期类型
 			BeanUtils.setProperty(pb, "birthday", birthday);
 			BeanInfo bi = Introspector.getBeanInfo(PersonBean.class, Object.class);
 			PropertyDescriptor [] pds = bi.getPropertyDescriptors();
@@ -113,7 +114,7 @@ categories:
 				Method method = pd.getReadMethod();
 				System.out.println(pd.getName() + ":" + method.invoke(pb).toString());
 			}
-			// BeanUtils只支持8中类型的数据类型转换，为了正确转换城日期类型，要注册转换器转换日期类型
+
 		}
 	
 	}
