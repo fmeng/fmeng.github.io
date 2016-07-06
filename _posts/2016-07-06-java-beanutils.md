@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "内省（Introspector）"
+title: "BeanUtils-把其他对象转换成Bean"
 categories:
 - java
 ---
