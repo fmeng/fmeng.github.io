@@ -2,7 +2,7 @@
 layout: post
 title: "Linux 复习"
 categories:
-- linux
+- linus
 ---
 <font color=red>**linux手册中文（包含其他中文手册！！！）：[http://linux.51yip.com/](http://linux.51yip.com/)**</font>
 
