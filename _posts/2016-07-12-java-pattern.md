@@ -243,7 +243,7 @@ categories:
 			}
 	2. **工厂方法模式**
 	<br/><font color=red><b>工厂方法模式避免简单工厂模式不满足完全OCP。简单工厂模式只有一个工厂类，而工厂方法模式有一组实现相同接口的工厂类。</b></font>
-	<br/>![](/img/pattern.png)
+	<br/>![](/img/pattern12.png)
 
 			public class Byd implements Car {
 			
@@ -266,7 +266,7 @@ categories:
 			}
 	3. **抽象工厂模式**
 	<br/><font color=red><b>不可增加产品，可以增加产品族</b></font>
-	<br/>![](/img/pattern.png)
+	<br/>![](/img/pattern13.png)
 
 总结：三种工厂模式，分别对应不同的项目形式，我们一般使用简单工厂模式创建对象。
 
