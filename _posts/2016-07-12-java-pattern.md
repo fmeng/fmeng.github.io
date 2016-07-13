@@ -642,8 +642,8 @@ Client.java
 <br/>
 <table boder="0">
 	<tr>
-	<td>![](/img/pattern21.jpg)!</td>
-	<td>[](/img/pattern22.jpg)</td>
+	<td><img src="/img/pattern21.jpg" /></td>
+	<td><img src="/img/pattern22.jpg" /></td>
 	</tr>
 </table>
 2. 应用场景
