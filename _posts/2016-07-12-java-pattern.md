@@ -634,14 +634,12 @@ Client.java
 动态代理。使用`class StarHandler implements InvocationHandler`实现`RealStar`和`ProxyStar`之间的联系。使用JVM自带的`Proxy.newProxyInstance()`构建一个代理对象（要使用到 StarHandler 构建Proxy对象）。Proxy内部通过反射提供了调用代理方法的入口，这样我们就可以把修改原来Proxy内方法执行的内容。
 
 ------
-### <a name="23">2.3代理模式</a> ###
+### <a name="23">2.3桥接模式</a> ###
 1. 特点
 	1. 桥接模式
 2. 案例分析
 <br/>继承模式下的类结构模式，太繁琐
-<br/>![](/img/pattern21.jpg)
-<br/>场景分析
-<br/>![](/img/pattern22.jpg)
+<br/>![](/img/pattern21.jpg)![](/img/pattern22.jpg)
 2. 应用场景
 	1. 
 3. 实现形式
