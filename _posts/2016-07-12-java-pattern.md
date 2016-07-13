@@ -652,7 +652,7 @@ Client.java
 		1. 奖金分类：个人奖金、团体奖金、激励奖金
 		2. 部门分类：人事部门、销售福门、研发部门
 3. **实现形式**（<font color=red>**一个主要实现的类，持有不同纬度接口的引用**</font>）
-<br/>![](/img/pattern21.png)
+<br/>![](/img/pattern22.png)
 5. **代码实现**
 <br/>Computer2.java
 
