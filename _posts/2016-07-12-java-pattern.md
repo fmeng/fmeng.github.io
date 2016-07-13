@@ -639,13 +639,7 @@ Client.java
 	1. 桥接模式
 2. 案例分析
 <br/>继承模式下的类结构模式，太繁琐
-<br/>
-<table boder="0">
-	<tr>
-	<td><img src="/img/pattern21.jpg" /></td>
-	<td><img src="/img/pattern22.jpg" /></td>
-	</tr>
-</table>
+<br/>![](/img/pattern21.jpg)
 2. 应用场景
 	1. 
 3. 实现形式
