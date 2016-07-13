@@ -367,3 +367,54 @@ client.java
 			}
 
 总结： clone和反序列化提供了除了new之外的构建对象的方法。clone是通过底层C++实现的，可以直接把内存中的数据做一个复制，效率较高。在创建构造比较繁琐的类的对象时，可以使用clone和反序列化。
+
+**结构性模型**，核心作用：是从程序的结构上实现松耦合，从而可以扩大整体的类结构，用来解决更大的问题。
+### <a name="21">2.1适配器模式</a> ###
+
+
+1. 特点
+	<br/>将一个类的接口转换成客户希望的另外一个接口。Adapter模式使得原本由于接口不兼容而不能在一起工作的那些类可以在一起工作了。
+<br/><font color=red>图很重要！**适配器模式的目的是实现一个适配两个对象Adapter类**</font>
+<br/>![](/img/pattern15.png)<br/>
+3. 模式中的角色
+	1. 目标接口（Target）：客户所期待的接口。目标可以是具体的或抽象的类，也可以是接口
+	2. 需要适配的类（Adaptee）：需要适配的类或适配者类
+	3. 适配器（Adapter）：通过包装一个需要适配的对象，把原接口转换成目标接口
+2. 应用场景
+	1. 旧系统的升级、改造
+	2. java.io.InputStreamReader(InputStream)
+	3. java.io.OutputStreamReader(OutputStream)
+5. 代码实现
+<br/>Adapter.java<font color=red>（通过继承`Adaptee`类的方式，实现和`Adaptee`的连接）</font>
+
+		public class Adapter extends Adaptee implements Target {
+			
+			@Override
+			public void handleReq() {
+				super.request();
+			}
+		}
+<br/>Adaper2.java<font color=red>（通过持有`Adaptee`类构建对象引用的方式，实现和`Adaptee`的连接）</font>
+
+		public class Adapter2 implements Target {
+		
+			private Adaptee adaptee;
+		
+			@Override
+			public void handleReq() {
+				adaptee.request();
+			}
+		
+			public Adapter2(Adaptee adaptee) {
+				super();
+				this.adaptee = adaptee;
+			}
+		
+		}
+
+
+
+总结：**接口就是一种标准。**要制作一种适配器连接两个类或接口，继承接口、实现类就可以了。也可以在适配器中持有类构建对象的引用。
+
+-----
+
