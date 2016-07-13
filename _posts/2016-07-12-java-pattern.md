@@ -14,12 +14,13 @@ categories:
 	5. <a href="#14">原型模式</a>
 2. **构造型模式**
 	1. <a href="#21">适配器模式</a>
-	2. <a href="#22">桥接模式</a>
-	3. <a href="#23">装饰模式</a>
-	4. <a href="#24">组合模式</a>
-	5. <a href="#25">外观模式</a>
-	6. <a href="#26">享元模式</a>
-	7. <a href="#27">代理模式</a>
+	2. <a href="#22">代理模式</a>
+	2. <a href="#23">桥接模式</a>
+	3. <a href="#24">装饰模式</a>
+	4. <a href="#25">组合模式</a>
+	5. <a href="#26">外观模式</a>
+	6. <a href="#27">享元模式</a>
+	7. <a href="#28">代理模式</a>
 3. **行为型模式**
 	1. <a href="#31">模版方法模式</a>
 	2. <a href="#32">命令模式</a>
@@ -368,23 +369,22 @@ client.java
 
 总结： clone和反序列化提供了除了new之外的构建对象的方法。clone是通过底层C++实现的，可以直接把内存中的数据做一个复制，效率较高。在创建构造比较繁琐的类的对象时，可以使用clone和反序列化。
 
-**结构性模型**，核心作用：是从程序的结构上实现松耦合，从而可以扩大整体的类结构，用来解决更大的问题。
 ### <a name="21">2.1适配器模式</a> ###
 
-
-1. 特点
-	<br/>将一个类的接口转换成客户希望的另外一个接口。Adapter模式使得原本由于接口不兼容而不能在一起工作的那些类可以在一起工作了。
-<br/><font color=red>图很重要！**适配器模式的目的是实现一个适配两个对象Adapter类**</font>
+1. **特点** 
+	<br/> 
+	**目的：将一个类的接口转换成客户希望的另外一个接口。** Adapter模式使得原本由于接口不兼容而不能在一起工作的那些类可以在一起工作了。
+<br/><font color=red>图很重要！**适配器模式在程序上的实现是，一个适配两个对象Adapter类**</font>
 <br/>![](/img/pattern15.png)<br/>
-3. 模式中的角色
-	1. 目标接口（Target）：客户所期待的接口。目标可以是具体的或抽象的类，也可以是接口
-	2. 需要适配的类（Adaptee）：需要适配的类或适配者类
-	3. 适配器（Adapter）：通过包装一个需要适配的对象，把原接口转换成目标接口
-2. 应用场景
+3. **模式中的角色**
+	1. **目标接口（Target）**：客户所期待的接口。目标可以是具体的或抽象的类，也可以是接口
+	2. **需要适配的类（Adaptee）**：需要适配的类或适配者类
+	3. <font color=red>**适配器（Adapter）**</font>：通过包装一个需要适配的对象，把原接口转换成目标接口
+2. **应用场景**
 	1. 旧系统的升级、改造
 	2. java.io.InputStreamReader(InputStream)
 	3. java.io.OutputStreamReader(OutputStream)
-5. 代码实现
+5. **代码实现**
 <br/>Adapter.java<font color=red>（通过继承`Adaptee`类的方式，实现和`Adaptee`的连接）</font>
 
 		public class Adapter extends Adaptee implements Target {
@@ -411,10 +411,240 @@ client.java
 			}
 		
 		}
+client.java
+
+		public static void main(String[] args) {
+			Client  c = new Client();
+			// 构建要适配的对象
+			Adaptee a = new Adaptee();		
+			// Target t = new Adapter();
+			// 1. 要构建的对象放到适配器中 2. 使目标接口持有构建好的适配器对象的引用
+			Target t = new Adapter2(a);
+			t.handleReq();		
+		}
 
 
 
 总结：**接口就是一种标准。**要制作一种适配器连接两个类或接口，继承接口、实现类就可以了。也可以在适配器中持有类构建对象的引用。
 
 -----
+### <a name="22">2.2代理模式</a> ###
+
+1. **特点**
+	<br/><font color=red>通过代理，控制对对象的访问！可以详细控制访问<font color=green>某个（某类）</font>对象的方法，在调用这个方法前做前置处理，调用这个方法后做后置处理。（既：AOP的微观实现！）</font>
+	<br/>AOP(Aspect Oriented Programming，面向切面的编程)的核心实现机制！
+<br/>![](/img/pattern15.png)<br/>
+2. **模式中的角色**
+	1. **抽象角色**（抽象出来的歌手）<br/>定义代理角色和真实角色的公共对外方法
+	2. **真实角色**（周杰伦）
+		1. **关注真正的业务逻辑**
+		2. 实现抽象角色，定义真实角色所要实现的业务逻辑，共代理角色调用
+	3. **代理角色**（经纪人）
+		1. **将统一的流程控制放到代理角色中处理**
+		2. 实现抽象角色，是真实角色的代理，通过真实角色的业务逻辑方法来实现抽象方法，并可以附加自己的操作
+3. **应用场景**
+	1. 安全代理：屏蔽对真实角色的直接访问
+	2. 远程代理：通过代理类处理远程方法调用（RMI）
+	3. 延迟加载：先加载轻量级的代理对象，真正需要时再加载真实对象
+4. **分类**
+	1. **静态代理**（静态定义代理类，自己定义）
+	2. **动态代理**（动态生成代理类，系统提供接口）
+		1. **JDK自带的动态代理**
+		2. javaassist字节码操作库实现
+		3. CGIB
+		4. ASM（底层使用指令，可维护性差）
+5. **代码实现**
+	1. **静态代理**
+		<font color=red><br/>ProxyStar持有RealStar的引用，实现两个类之间的联系 </font>
+<br/>Star.java（接口）
+	
+			// 真实角色和代理角色都要实现这个接口
+			public interface Star {
+				// 面谈
+				void confer();
+				// 签合同
+				void signContract();
+				// 订票
+				void bookTicket();
+				// 唱歌
+				void sing();
+				// 收钱
+				void collectMoney();
+			}
+RealStar.java(真实角色)
+
+			//代理角色和真实角色实现相同的接口
+			public class RealStar implements Star {
+				@Override
+				public void bookTicket() {
+					System.out.println("RealStar.bookTicket()");
+				}
+				@Override
+				public void collectMoney() {
+					System.out.println("RealStar.collectMoney()");
+				}
+				@Override
+				public void confer() {
+					System.out.println("RealStar.confer()");
+				}
+				@Override
+				public void signContract() {
+					System.out.println("RealStar.signContract()");
+				}
+				@Override
+				public void sing() {
+					System.out.println("RealStar(周杰伦本人).sing()");
+				}	
+			}
+ProxyStar.java（代理角色）
+
+			// 代理角色和真实角色实现相同的接口
+			public class ProxyStar implements Star {
+				// 持有真实角色的引用
+				private Star star;
+				public ProxyStar(Star star) {
+					super();
+					this.star = star;
+				}
+				@Override
+				public void bookTicket() {
+					System.out.println("ProxyStar.bookTicket()");
+				}
+				@Override
+				public void collectMoney() {
+					System.out.println("ProxyStar.collectMoney()");
+				}
+				@Override
+				public void confer() {
+					System.out.println("ProxyStar.confer()");
+				}
+				@Override
+				public void signContract() {
+					System.out.println("ProxyStar.signContract()");
+				}
+				@Override
+				public void sing() {
+					star.sing();
+				}
+			}
+Client.java
+
+			public class Client {
+				public static void main(String[] args) {
+					Star real = new RealStar();
+					Star proxy = new ProxyStar(real);
+					// 由代理角色实现 （经济人）
+					proxy.confer();
+					proxy.signContract();
+					proxy.bookTicket();
+					proxy.collectMoney();
+					// 由真实角色实现（周杰伦）
+					proxy.sing();
+					
+				}
+			}
+
+	2. **动态代理**
+		<font color=red><br/>使用`class StarHandler implements InvocationHandler`实现`RealStar`和`ProxyStar`之间的联系。使用JVM自带的`Proxy.newProxyInstance()`构建一个代理对象（要使用 StarHandler）</font>
+<br/><br/>Star.java（接口）
+	
+			// 真实角色和代理角色都要实现这个接口
+			public interface Star {
+				// 面谈
+				void confer();
+				// 签合同
+				void signContract();
+				// 订票
+				void bookTicket();
+				// 唱歌
+				void sing();
+				// 收钱
+				void collectMoney();
+			}
+
+          RealStar.java(真实角色)
+
+			//代理角色和真实角色实现相同的接口
+			public class RealStar implements Star {
+				@Override
+				public void bookTicket() {
+					System.out.println("RealStar.bookTicket()");
+				}
+				@Override
+				public void collectMoney() {
+					System.out.println("RealStar.collectMoney()");
+				}
+				@Override
+				public void confer() {
+					System.out.println("RealStar.confer()");
+				}
+				@Override
+				public void signContract() {
+					System.out.println("RealStar.signContract()");
+				}
+				@Override
+				public void sing() {
+					System.out.println("RealStar(周杰伦本人).sing()");
+				}	
+			}
+<br/>StarHandler.java
+
+			public class StarHandler implements InvocationHandler {
+				private Star realStar;
+				// 把代理要连接的RealStart放进来
+				public StarHandler(Star realStar) {
+					super();
+					this.realStar = realStar;
+				}
+				/*
+				 * InvocationHandler接口中invoke方法的功能
+				 * 1. 调用proxy的所有方法
+				 * 2. proxy的所有方法在调用的时候会执行 invoke方法
+				 * 3. 在invoke调用过程做修改，使其调用RealStart的方法
+				 */
+				@Override
+				public Object invoke(Object proxy, Method method, Object[] args)
+						throws Throwable {
+					Object object = null;
+					if(method.getName().equals("sing")){
+						// 调用RealStart的sing方法，不调用proxy的sing方法
+						// 如果调用的方法有返回值，返回Object
+						object = method.invoke(realStar, args);
+					}
+					return object;
+				}
+			}
+Client.java
+
+			public static void main(String[] args) {
+				Star realStar = new RealStar();
+				// handler用来建立真实对象和代理对象之间的联系
+				StarHandler handler = new StarHandler(realStar);
+				// 通过系统自带的Proxy获得一个代理对象
+				Star proxy = (Star) Proxy.newProxyInstance(ClassLoader.getSystemClassLoader(), 
+						new Class[]{Star.class}, handler);
+				// 这里调用的是真实角色的sing方法
+				proxy.sing();		
+			}
+
+总结：**代理。真实对象和代理对象要实现同一接口，代理对象要和真实对象建立联系（静态代理，通过proxy持有真实对象的引用；动态代理，通过实现InvocationHandler接口的类）。**
+
+静态代理。需要自己构建代理对象，只有真实对象的引用。这样就能通过代理对象隐藏真是对象的很多功能细节，把真实对象需要开放的功能提供给代理以供调用者使用。
+
+动态代理。使用`class StarHandler implements InvocationHandler`实现`RealStar`和`ProxyStar`之间的联系。使用JVM自带的`Proxy.newProxyInstance()`构建一个代理对象（要使用到 StarHandler 构建Proxy对象）。Proxy内部通过反射提供了调用代理方法的入口，这样我们就可以把修改原来Proxy内方法执行的内容。
+
+------
+### <a name="23">2.3代理模式</a> ###
+1. 特点
+	1. 桥接模式
+2. 案例分析
+<br/>继承模式下的类结构模式，太繁琐
+<br/>![](/img/pattern21.jpg)
+<br/>场景分析
+<br/>![](/img/pattern22.jpg)
+2. 应用场景
+	1. 
+3. 实现形式
+4. 性能标准
+5. 代码实现
 
