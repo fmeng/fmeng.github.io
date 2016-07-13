@@ -635,14 +635,91 @@ Client.java
 
 ------
 ### <a name="23">2.3桥接模式</a> ###
-1. 特点
-	1. 桥接模式
-2. 案例分析
+1. **特点**
+	1. **桥接模式可以代替多层继承方案**。多层继承违背了单一继承原则，服用性较差，类的个数页非常多。桥接模式可以极大的减少子类的个数，从而降低管理和维护的成本。
+	2. 桥接模式极大的提高了系统的可扩展性，在两个变化纬度中任意扩展一个纬度，都不需要修改原有的系统，**符合开闭原则**。
+	3. 桥接模式适用于。**处理多层继承结构，处理多维度变化的场景，将各个纬度设计成独立的继承结构**，使各个纬度可以和独立的扩展在抽象层建立关联。
+2. **案例分析**
 <br/>继承模式下的类结构模式，太繁琐
 <br/>![](/img/pattern21.jpg)
-2. 应用场景
-	1. 
-3. 实现形式
-4. 性能标准
-5. 代码实现
+
+2. **应用场景**
+	1. JDBC驱动程序
+	2. 银行日志管理（多纬度）
+		1. 格式分类：操作日志、交易日志、异常日志
+		2. 距离分类：本地记录日志、异地记录日志
+	3. 人力资源系统中的奖金计算模块（多纬度）
+		1. 奖金分类：个人奖金、团体奖金、激励奖金
+		2. 部门分类：人事部门、销售福门、研发部门
+3. **实现形式**（<font color=red>**一个主要实现的类，持有不同纬度接口的引用**</font>）
+<br/>![](/img/pattern21.png)
+5. **代码实现**
+<br/>Computer2.java
+
+		public class Computer2 {
+			protected Brand brand;
+			public Computer2(Brand b) {
+				this.brand = b;
+			}	
+			public void sale(){
+				brand.sale();
+			}	
+		}
+		
+		class Desktop2 extends Computer2 {
+		
+			public Desktop2(Brand b) {
+				super(b);
+			}
+			
+			@Override
+			public void sale() {
+				super.sale();
+				System.out.println("销售台式机");
+			}
+		}
+		
+		class Laptop2 extends Computer2 {
+			
+			public Laptop2(Brand b) {
+				super(b);
+			}
+			
+			@Override
+			public void sale() {
+				super.sale();
+				System.out.println("销售笔记本");
+			}
+		}
+Brand.java
+
+		public interface Brand {
+			void sale();
+		}
+		
+		class Lenovo implements Brand {
+			@Override
+			public void sale() {
+				System.out.println("销售联想电脑");
+			}	
+		}
+		
+		class Dell implements Brand {
+			@Override
+			public void sale() {
+				System.out.println("销售Dell电脑");
+			}	
+		}
+		
+		class Shenzhou implements Brand {	
+			@Override
+			public void sale() {
+				System.out.println("销售神舟电脑");
+			}	
+		}
+
+总结：重要的理解，在多维度变化的场景下，使用桥接模式可以代替多层继承方案。**实现形式是重点！**
+
+----
+
 
