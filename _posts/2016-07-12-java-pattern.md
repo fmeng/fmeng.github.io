@@ -21,9 +21,9 @@ categories:
 	5. <a href="#26">外观模式</a>
 	6. <a href="#27">享元模式</a>
 3. **行为型模式**
-	1. <a href="#31">模版方法模式</a>
-	2. <a href="#32">命令模式</a>
-	3. <a href="#33">迭代器模式</a>
+	1. <a href="#31">职责链模式</a>
+	2. <a href="#32">迭代器模式</a>
+	3. <a href="#33">中介者模式</a>
 	4. <a href="#34">观察者模式</a>
 	5. <a href="#35">中介者模式</a>
 	6. <a href="#36">备忘录模式</a>
@@ -31,7 +31,7 @@ categories:
 	8. <a href="#38">状态模式</a>
 	9. <a href="#39">策略模式</a>
 	10. <a href="#310">职责链模式</a>
-	11. <a href="#311">访问者模式</a>
+	11. <a href="#311">模版方法模式</a>
 	
 ## <a name="1">1.创建型模式</a> ##
 
@@ -1137,3 +1137,394 @@ ChessFlyWeightFactory.java
 总结：<font color=red>享元模式以共享的方式高效的支持大量细粒度对象的重用；享元模式能做到共享的关键是区分了内部状态和外部状态；</font>享元模式的实现过程比较复杂，应该主要学习其应用场景，使用的时候在过来学习。
 
 -----
+### <a name="31">3.1职责链模式</a> ###
+
+1. **定义**<br/><font color=red>将能够处理同一类请求的对象连城一条链，所提交的请求沿着链传递，链上的对象逐个判断是否有能力处理该请求，如果能处理则处理，如果不能则传递给链上的下一个对象。</font>
+2. **应用场景**
+ 	1. java中异常机制就是一种责任链模式。一个try可以对应多个catch，当一个catch不匹配类型，则自动调到下一个catch。
+	2. Servlet开发中，过滤器的链式处理
+	3. Structs2中拦截器的调用也是典型的责任链模式
+4. **UML关系图解**<br/>![](/img/pattern311.png)
+5. **代码实现**
+<br/>Leader.java **抽象类**
+
+		public abstract class Leader {
+			protected String name;
+			protected Leader nextLeader; //责任链上的后继对象
+			
+			public Leader(String name) {
+				super();
+				this.name = name;
+			}
+			//设定责任链上的后继对象
+			public void setNextLeader(Leader nextLeader) {
+				this.nextLeader = nextLeader;
+			}
+			public abstract void handleRequest(LeaveRequest request);
+		}
+
+	LeaveRequest.java **请假条**
+
+		public class LeaveRequest {
+			private String empName;
+			private int leaveDays;
+			private String reason;
+			
+			public LeaveRequest(String empName, int leaveDays, String reason) {
+				super();
+				this.empName = empName;
+				this.leaveDays = leaveDays;
+				this.reason = reason;
+			}
+			public String getEmpName() {
+				return empName;
+			}
+			public void setEmpName(String empName) {
+				this.empName = empName;
+			}
+			public int getLeaveDays() {
+				return leaveDays;
+			}
+			public void setLeaveDays(int leaveDays) {
+				this.leaveDays = leaveDays;
+			}
+			public String getReason() {
+				return reason;
+			}
+			public void setReason(String reason) {
+				this.reason = reason;
+			} 
+		}
+Director.java 主任
+
+		public class Director extends Leader {
+		
+			public Director(String name) {
+				super(name);
+			}
+		
+			@Override
+			public void handleRequest(LeaveRequest request) {
+				if(request.getLeaveDays()<3){
+					System.out.println("员工："+request.getEmpName()+"请假，天数："+request.getLeaveDays()+",理由："+request.getReason());
+					System.out.println("主任："+this.name+",审批通过！");
+				}else{
+					if(this.nextLeader!=null){
+						this.nextLeader.handleRequest(request);
+					}
+				}
+			}
+		
+		}
+	Manager.java 经理
+
+		public class Manager extends Leader {
+		
+			public Manager(String name) {
+				super(name);
+			}
+		
+			@Override
+			public void handleRequest(LeaveRequest request) {
+				if(request.getLeaveDays()<10){
+					System.out.println("员工："+request.getEmpName()+"请假，天数："+request.getLeaveDays()+",理由："+request.getReason());
+					System.out.println("经理："+this.name+",审批通过！");
+				}else{
+					if(this.nextLeader!=null){
+						this.nextLeader.handleRequest(request);
+					}
+				}
+			}
+		
+		}
+	GeneralManager.java  总经理
+		
+		public class GeneralManager extends Leader {
+		
+			public GeneralManager(String name) {
+				super(name);
+			}
+		
+			@Override
+			public void handleRequest(LeaveRequest request) {
+				if(request.getLeaveDays()<30){
+					System.out.println("员工："+request.getEmpName()+"请假，天数："+request.getLeaveDays()+",理由："+request.getReason());
+					System.out.println("总经理："+this.name+",审批通过！");
+				}else{
+					System.out.println("莫非"+request.getEmpName()+"想辞职，居然请假"+request.getLeaveDays()+"天！");
+				}
+			}
+		
+		}
+
+	Client.java
+
+		public class Client {
+			public static void main(String[] args) {
+				Leader a = new Director("张三");
+				Leader b = new Manager("李四");
+				Leader c = new GeneralManager("王五");
+				//组织责任链对象的关系
+				a.setNextLeader(b);
+				b.setNextLeader(c);
+				
+				//开始请假操作
+				LeaveRequest req1 = new LeaveRequest("TOM", 15, "回英国老家探亲！");
+				a.handleRequest(req1);
+				
+			}
+		}
+
+总结：<font color=red>职责链模式将能够处理同一类请求的对象连城一条链，所提交的请求沿着链传递。这样把原先可以通过`if else`实现的功能抽离出来，减少了类之间的耦合。</font>
+
+------
+### <a name="32">3.2迭代器模式</a> ###
+
+1. **场景**
+	1. 提供了一种可以遍历聚合对象的方式。又称为：游标cursor模式
+	2. 聚合对象：存储数据
+	3. 迭代器：遍历数据
+2. **应用场景**
+	1. JDK内置的迭代器（List/Set）
+3. **UML结构图**<br/>![](/img/pattern321.jpg)
+
+5. **代码实现**（已经简化类图结构）<br/>
+	MyIterator.java
+	
+		// 自定义的迭代器接口
+		public interface MyIterator {
+			void first();	//将游标指向第一个元素
+			void next();	//将游标指向下一个元素
+			boolean hasNext();//判断是否存在下一个元素
+			
+			boolean isFirst();
+			boolean isLast();
+			
+			Object getCurrentObj();  //获取当前游标指向的对象
+		}
+	ConcreteMyAggregate.java
+
+		// 自定义的聚合类
+		public class ConcreteMyAggregate {
+			private List<Object> list = new ArrayList<Object>();
+		
+			public void addObject(Object obj){
+				this.list.add(obj);
+			}
+			public void removeObject(Object obj){
+				this.list.remove(obj);
+			}
+		
+			public List<Object> getList() {
+				return list;
+			}
+		
+			public void setList(List<Object> list) {
+				this.list = list;
+			}
+			
+			//获得迭代器
+			public MyIterator  createIterator(){
+				return new ConcreteIterator();
+			}
+			
+			//使用内部类定义迭代器，可以直接使用外部类的属性
+			private class ConcreteIterator implements MyIterator {
+		
+				private int cursor;  //定义游标用于记录遍历时的位置
+				
+				@Override
+				public void first() {
+					cursor = 0;
+				}
+		
+				@Override
+				public Object getCurrentObj() {
+					return list.get(cursor);
+				}
+		
+				@Override
+				public boolean hasNext() {
+					if(cursor<list.size()){
+						return true;
+					}
+					return false;
+				}
+		
+				@Override
+				public boolean isFirst() {
+					return cursor==0?true:false;
+				}
+		
+				@Override
+				public boolean isLast() {
+					return cursor==(list.size()-1)?true:false;
+				}
+		
+				@Override
+				public void next() {
+					if(cursor<list.size()){
+						cursor++;
+					}
+				}
+				
+			}	
+			
+		}
+Client.java
+
+		public static void main(String[] args) {
+				ConcreteMyAggregate cma = new ConcreteMyAggregate();
+				cma.addObject("aa");
+				cma.addObject("bb");
+				cma.addObject("cc");
+				
+				MyIterator iter = cma.createIterator();
+				while(iter.hasNext()){
+					System.out.println(iter.getCurrentObj());
+					iter.next();
+				}
+				
+			}
+		}
+
+总结：**迭代器模式提供了一种跟便捷的遍历聚合对象的方式。**
+
+
+------
+
+### <a name="33">3.3中介者模式</a> ###
+1. **特点**
+	1. 如果一个系统中对象之间的联系呈现为网状结构，对象之间存在大量的多对多关系，将导致关系及其复杂，这些对象称为“**同事对象**”
+	2. 我们可以引入一个“**中介者对象**”，使各个同事对象只跟中介者对象打交道，将复杂的网络结构化解为星状结构
+3. **本质**<br/>解耦多个同事对象之间的交互关系。每个对象都持有中介者对象的引用，只跟中介者对象打交道。我们通过中介者对象统一管理这些交互关系。
+2. **应用场景**
+	1. MVC模式（其中C，控制器就是一个中介者对象。M和V都和它打交道）
+	2. 窗口游戏程序。窗口软件开发中窗口对象也是一个中介者对象
+	3. 图形界面开发GUI中，多个组件之间的交互，可以通过引入一个中介者对象来解决，可以是整体的窗口对象或者DOM对象
+	4. `Java.lang.reflect.Method#invoke()`
+3. **实现形式**<br />![](/img/pattern331.png)
+5. **代码实现**
+<br/>Department.java
+
+		//同事类的接口
+		public interface Department {
+			void selfAction(); //做本部门的事情
+			void outAction();  //向总经理发出申请
+		}
+Finacial.java（财务部）
+
+		public class Finacial implements Department {
+		
+			private Mediator m;  //持有中介者(总经理)的引用
+			
+			public Finacial(Mediator m) {
+				super();
+				this.m = m;
+				m.register("finacial", this);
+			}
+		
+			@Override
+			public void outAction() {
+				System.out.println("汇报工作！没钱了，钱太多了！怎么花?");
+			}
+		
+			@Override
+			public void selfAction() {
+				System.out.println("数钱！");
+			}
+		
+		}
+Market.java（市场部）
+
+		public class Market implements Department {
+		
+			private Mediator m;  //持有中介者(总经理)的引用
+			
+			public Market(Mediator m) {
+				super();
+				this.m = m;
+				m.register("market", this);
+			}
+		
+			@Override
+			public void outAction() {
+				System.out.println("汇报工作！项目承接的进度，需要资金支持！");
+				
+				m.command("finacial");
+				
+			}
+		
+			@Override
+			public void selfAction() {
+				System.out.println("跑去接项目！");
+			}
+		
+		}
+Development.java（研发部）
+
+		public class Development implements Department {
+		
+			private Mediator m;  //持有中介者(总经理)的引用
+			
+			public Development(Mediator m) {
+				super();
+				this.m = m;
+				m.register("development", this);
+			}
+		
+			@Override
+			public void outAction() {
+				System.out.println("汇报工作！没钱了，需要资金支持！");
+			}
+		
+			@Override
+			public void selfAction() {
+				System.out.println("专心科研，开发项目！");
+			}
+		
+		}
+Mediator.java (中介者抽象接口)
+
+		public interface Mediator {
+			
+			void register(String dname,Department d);
+			
+			void command(String dname);
+			
+		}
+President.java (中介者，总经理)
+
+		public class President implements Mediator {
+			
+			private Map<String,Department> map = new HashMap<String , Department>();
+			
+			@Override
+			public void command(String dname) {
+				map.get(dname).selfAction();
+			}
+		
+			@Override
+			public void register(String dname, Department d) {
+				map.put(dname, d);
+			}
+		
+		}
+client.java
+
+		public static void main(String[] args) {
+			Mediator m = new President();
+			
+			Market   market = new Market(m);
+			Development devp = new Development(m);
+			Finacial f = new Finacial(m);
+			
+			market.selfAction();
+			market.outAction();
+			
+		}
+
+<font color=red>总结：解耦多个同事对象之间的交互关系。每个对象都持有中介者对象的引用，只跟中介者对象打交道。我们通过中介者对象统一管理这些交互关系。</font>
+
+
+----
