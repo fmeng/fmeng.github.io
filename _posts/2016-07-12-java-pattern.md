@@ -12,15 +12,14 @@ categories:
 	2. <a href="#12">工厂模式</a>
 	4. <a href="#13">建造者模式</a>
 	5. <a href="#14">原型模式</a>
-2. **构造型模式**
+2. <a href="#2">**构造型模式**</a>
 	1. <a href="#21">适配器模式</a>
 	2. <a href="#22">代理模式</a>
 	2. <a href="#23">桥接模式</a>
-	3. <a href="#24">装饰模式</a>
-	4. <a href="#25">组合模式</a>
+	3. <a href="#24">组合模式</a>
+	4. <a href="#25">装饰模式</a>
 	5. <a href="#26">外观模式</a>
 	6. <a href="#27">享元模式</a>
-	7. <a href="#28">代理模式</a>
 3. **行为型模式**
 	1. <a href="#31">模版方法模式</a>
 	2. <a href="#32">命令模式</a>
@@ -369,6 +368,17 @@ client.java
 
 总结： clone和反序列化提供了除了new之外的构建对象的方法。clone是通过底层C++实现的，可以直接把内存中的数据做一个复制，效率较高。在创建构造比较繁琐的类的对象时，可以使用clone和反序列化。
 
+----
+## <a name="2">2.构造型模式</a> ##
+
+1. <a name="21">适配器模式</a><br/>是原本由于接口不兼容不能在一起工作的类可以一起工作
+2. <a name="22">代理模式</a><br/>为真实对象提供一个代理，从而控制对真实对象的访问
+2. <a name="23">桥接模式</a><br/>处理多层继承结构，处理多纬度变化的场景，将各个纬度设计成独立的继承结构，使各个纬度可以独立的扩展在抽象层建立关联
+3. <a name="24">组合模式</a><br/>将对象组合成树状结构以表示部分和整体的层次结构，使得客户可以统一的调用子叶对象和容器对象
+4. <a name="25">装饰模式</a><br/>动态地为一个对象添加额外的功能，比继承灵活
+5. <a name="26">外观模式</a><br/>为子系统提供统一的调用接口，使得子系统更加容易使用
+6. <a name="27">享元模式</a><br/>运用共享技术有效的实现管理大量细粒度对象，节省内存，提高效率
+
 ### <a name="21">2.1适配器模式</a> ###
 
 1. **特点** 
@@ -435,7 +445,10 @@ client.java
 	<br/>AOP(Aspect Oriented Programming，面向切面的编程)的核心实现机制！
 <br/>![](/img/pattern15.png)<br/>
 2. **模式中的角色**
-	1. **抽象角色**（抽象出来的歌手）<br/>定义代理角色和真实角色的公共对外方法
+	1. **抽象角色**（抽象出来的歌手）<br/>定义
+	2. 
+	3. 
+	4. 角色和真实角色的公共对外方法
 	2. **真实角色**（周杰伦）
 		1. **关注真正的业务逻辑**
 		2. 实现抽象角色，定义真实角色所要实现的业务逻辑，共代理角色调用
@@ -723,3 +736,404 @@ Brand.java
 ----
 
 
+### <a name="24">2.4组合模式</a> ###
+
+1. **特点**
+	1. <font color=red>组合模式和类的组合不同</font>
+	2. <font color=red>组合模式适用于“树”型结构</font>
+3. **组织结构**
+    1. 抽象构件角色（component），定义了子叶和容器的共同特点
+	2. 子叶构件角色（leaf），无子节点
+	3. 容器构件角色（composite），有容器特征，可以包含子节点<br/>
+	
+	![](/img/pattern241.png)
+2. **应用场景**
+	1. 操作系统中的资源管理器
+	2. GUI中的容器层次图
+	3. XML文件解析
+	4. OA系统中，组织结构的处理
+	5. Junit单元测试框架
+		> 底层设计就是典型的组合模式，TestCase（子叶）， TestUnit（容器），Test接口（抽象） 
+3. **流程分析**
+	1. 组合模式为了处理**树型结构**提供了完美的解决方案，描述了如何将容器和子叶进行递归组合，使得用户在使用时可以**一致性的对待容器和子叶**。
+	2. 当容器对象的指定方法被调用时，将遍历整个树型结构，寻找也包含这个方法的成员，并调用执行。其中，使用递归调用的机制对真个结构进行处理。
+5. **代码实现**<br/>
+AbstractFile.java（各个组建）
+
+		//抽象构建
+		public interface AbstractFile {
+			void killVirus(); // 杀毒
+		}
+		
+		class ImageFile implements AbstractFile {
+			private String name;
+		
+			public ImageFile(String name) {
+				super();
+				this.name = name;
+			}
+		
+			@Override
+			public void killVirus() {
+				System.out.println("---图像文件：" + name + ",进行查杀！");
+			}
+		
+		}
+		
+		class TextFile implements AbstractFile {
+			private String name;
+		
+			public TextFile(String name) {
+				super();
+				this.name = name;
+			}
+		
+			@Override
+			public void killVirus() {
+				System.out.println("---文本文件：" + name + ",进行查杀！");
+			}
+		}
+		
+		class VideoFile implements AbstractFile {
+			private String name;
+		
+			public VideoFile(String name) {
+				super();
+				this.name = name;
+			}
+		
+			@Override
+			public void killVirus() {
+				System.out.println("---视频文件：" + name + ",进行查杀！");
+			}
+		}
+		
+		class Folder implements AbstractFile {
+			private String name;
+			// 定义容器，用来存放本容器构建下的子节点
+			private List<AbstractFile> list = new ArrayList<AbstractFile>();
+		
+			public Folder(String name) {
+				super();
+				this.name = name;
+			}
+		
+			public void add(AbstractFile file) {
+				list.add(file);
+			}
+		
+			public void remove(AbstractFile file) {
+				list.remove(file);
+			}
+		
+			public AbstractFile getChild(int index) {
+				return list.get(index);
+			}
+		
+			@Override
+			public void killVirus() {
+				System.out.println("---文件夹：" + name + ",进行查杀");
+		
+				for (AbstractFile file : list) {
+					file.killVirus();
+				}
+		
+			}
+		
+		}
+
+	client.java
+
+
+		public static void main(String[] args) {
+			// 子叶构件
+			AbstractFile f2,f3,f4,f5;
+			// 容器构件
+			Folder f1 = new Folder("我的收藏");
+			f2 = new ImageFile("老高的大头像.jpg");
+			f3 = new TextFile("Hello.txt");
+			f1.add(f2);
+			f1.add(f3);	
+			Folder f11 = new Folder("电影");
+			f4 = new VideoFile("笑傲江湖.avi");
+			f5 = new VideoFile("神雕侠侣.avi");
+			f11.add(f4);
+			f11.add(f5);
+			f1.add(f11);
+			f2.killVirus();	
+			f1.killVirus();
+		}
+
+**总结：组合结构和类的组合不同，组合结构适用于树形结构。**
+
+
+-----
+### <a name="25">2.5装饰模式</a> ###
+
+1. **特点**<font color=red>
+	1. **动态**的为一个对象**增加新功能**
+	2. 装饰模式是一种用于代替继承的技术，无须通过继承增加子类就能扩展对象的新功能。使用对象的关联关系代替继承关系，避免了类型体系的快速膨胀。</font>
+2. **应用场景**
+	2. Swing包中图形界面构件的功能
+	3. Servlet API中提供了一个request对象的Decorater设计模式的默认实现类HttpServletRequestWrapper，HttpServletRequestWrapper类增强了request的功能。
+	4. Structs2中，request，response，session对象的处理
+	1. IO的输入输出流的设计 
+		1. 抽象构件角色 Componet<br/>`inputStream`、`outputStream`、`Reader`、`Writer`
+		2. 具体构件角色 Concrete Componet<br/>`FileInputStram`、`FileOutputStream`
+		3. 装饰角色 Decorator<br/>`FilterInputStream`、`FilterOutputStream`
+		4. 具体装饰角色 ConcreteDecorator<br/>`BufferedInputStream`、`BufferedOutputStream`
+3. **实现形式**
+	1. 抽象构件角色 Componet<br/>真实对象和装饰对象有相同的接口。这样，客户端对象就能够以与真实对象相同的方式同装饰对象进行交货
+	2. 具体构件角色 Concrete Componet（真实对象）<br/>IO流中的FileInputStream、FileOutputStream
+	3. 装饰角色 Decorator<br/>持有一个抽象构件的引用。装饰对象接收所有客户端的请求，并把这些请求转发给真实对象。这样，就能在真实对象调用前后增加新功能。
+	4. 具体装饰角色 ConcreteDecorator<br/>真实对象装饰后的角色<br/>
+	![](/img/pattern251.png)
+4. <font color=red>**重点**</font>
+	4. **总结**
+		1. 装饰模式（Decorator）也叫包装模式（**Wrapper**）
+		2. 装饰模式降低了系统的耦合度，可以动态的添加删除对象的职责，并使需要构件的具体构件类和具体装饰类可以独立变化，以便增加新的具体构件类和具体装饰类
+	1. **优点**
+		1. 扩展对象功能，比继承灵活，不会导致类的个数急剧增加
+		2. 可以对一个对象进行多次装饰，创造出不同行为的组合，得到功能更加强大的对象
+		3. 具体构建类和具体装饰类可以独立变化，用户可以根据自己的需要，自己增加新的具体构件子类和具体装饰类
+	2. **缺点**
+		1. 产生很对小对象。大量小对象占据内存，一定程度上影响性能
+		2. 装饰模式易于出错，调试排查比较麻烦
+	3. **装饰模式和桥接模式的区别**
+		<br/>两个模式都是为了解决对子类对象问题，<font color=red>**但是他们的诱因不一样**。桥接模式是对象自身现有机制沿多个纬度变化，是既有部分不稳定。装饰模式是为了增加新的功能。</font> 
+	
+5. **代码实现**
+
+		public interface ICar {
+			void move();
+		}
+		
+		//ConcreteComponent 具体构件角色(真实对象)
+		class Car implements ICar {
+			@Override
+			public void move() {
+				System.out.println("陆地上跑！");
+			}
+		}
+		
+		//Decorator装饰角色
+		class SuperCar implements ICar {
+			protected ICar car;
+			public SuperCar(ICar car) {
+				super();
+				this.car = car;
+			}
+		
+			@Override
+			public void move() {
+				car.move();
+			}
+		}
+		
+		//ConcreteDecorator具体装饰角色
+		class FlyCar extends SuperCar {
+		
+			public FlyCar(ICar car) {
+				super(car);
+			}
+			
+			public void fly(){
+				System.out.println("天上飞！");
+			}
+		
+			@Override
+			public void move() {
+				super.move();
+				fly();
+			}
+			
+		}
+		
+		//ConcreteDecorator具体装饰角色
+		class WaterCar extends SuperCar {
+			
+			public WaterCar(ICar car) {
+				super(car);
+			}
+			
+			public void swim(){
+				System.out.println("水上游！");
+			}
+			
+			@Override
+			public void move() {
+				super.move();
+				swim();
+			}
+			
+		}
+		
+		//ConcreteDecorator具体装饰角色
+		class AICar extends SuperCar {
+			
+			public AICar(ICar car) {
+				super(car);
+			}
+			
+			public void autoMove(){
+				System.out.println("自动跑！");
+			}
+			
+			@Override
+			public void move() {
+				super.move();
+				autoMove();
+			}
+			
+		}
+client.java
+
+		public class Client {
+			public static void main(String[] args) {
+				Car car  = new Car();
+				car.move();
+				
+				System.out.println("增加新的功能，飞行----------");
+				FlyCar flycar = new FlyCar(car);
+				flycar.move();
+				
+				System.out.println("增加新的功能，水里游---------");
+				WaterCar  waterCar = new WaterCar(car);
+				waterCar.move();
+				
+				System.out.println("增加两个新的功能，飞行，水里游-------");
+				WaterCar waterCar2 = new WaterCar(new FlyCar(car));
+				waterCar2.move();
+				
+			}
+		}
+
+总结：装饰器模式**动态**的为一个对象**增加新功能**，区别与桥接模式在指定的纬度为对象增加新功能。
+
+-----
+
+### <a name="26">2.6外观模式</a> ###
+
+1. **特点**
+	1. 迪米特法则（最少知识原则）<br/>一个软件实体应当尽可能少的与其他实体发生相互作用。
+	2. 为一个子系统提供统一的入口。封装子系统的复杂性，便于客户端调用。
+2. **应用场景**
+	1. 使用频率高。那里都会用到。各种技术和框架中，都有外观模式的使用。如：<br/>JDBC封装后的，Commons提供的DBUtils类，Hibernate提供的工具类	，SpringJDBC工具类等。
+5. **实现**
+<br/>![](/img/pattern261.png)
+
+总结：**把复杂的业务逻辑隐藏起来，只对外提供一个服务的入口。**封装子系统的复杂性，便于客户端调用。
+
+----
+### <a name="27">2.7享元模式</a> ###
+1. **特点**
+	1. 场景
+		<br/>如果有很多个完全相同或者相似的对象，我们可以**通过享元模式来节省内存**。
+	2. 核心
+		1. <font color=red>享元模式以共享的方式高效的支持大量细粒度对象的重用</font>
+		2. <font color=red>享元模式能做到共享的关键是区分了内部状态和外部状态</font>
+	1. 优点
+		1. 极大的减少了内存中对象的数量
+		2. 相同或相似对象内存中只存一份，极大的节约了资源，提高了系统的性能
+		3. 外部状态相对独立，不影响内部状态
+	4. 缺点
+		1. 模式较复杂，使程序逻辑复杂化
+		2. 为了节省内存，共享了内部状态，分离出外部状态，而读取外部状态使运行时间变长。用时间换空间。
+2. **应用场景**
+	1. 享元模式由于其共享的特性，可以在任何池中操作，比如：线程池、数据库连接池
+	2. Spring类的设计也是享元模式
+3. **实现形式**
+	1. FlyweightFactory 享元工厂类<br/>创建并管理享元对象，享元池一般设计成键值对
+	2. Flyweight<br/>通常是一个接口或抽象类，声明公共方法，这些方法可以向外界提供对象的内部状态，设置外部状态。
+	3. concreteFlyWeight具体享元类<br/> 为内部状态提供成员变量进行存储
+	4. UnshareConcreteFlyWeight非共享享元类<br/>不能被共享的子类设计成非共享享元类<br/>
+![](/img/pattern271.png)
+5. **代码实现**
+<br/>Coordinate.java（外部状态`UnSharedConcreteFlyWeight`）
+
+		// 外部状态UnSharedConcreteFlyWeight
+		public class Coordinate {
+			private int x,y;
+		
+			public Coordinate(int x, int y) {
+				super();
+				this.x = x;
+				this.y = y;
+			}
+		
+			public int getX() {
+				return x;
+			}
+		
+			public void setX(int x) {
+				this.x = x;
+			}
+		
+			public int getY() {
+				return y;
+			}
+		
+			public void setY(int y) {
+				this.y = y;
+			}
+			
+		}
+
+	ChessFlyWeight.java
+
+		// 享元类
+		public interface ChessFlyWeight {
+			void setColor(String c);
+			String getColor();
+			void display(Coordinate c);
+		}
+		
+		
+		class ConcreteChess implements ChessFlyWeight {
+		
+			private String color;
+			
+			public ConcreteChess(String color) {
+				super();
+				this.color = color;
+			}
+		
+			@Override
+			public void display(Coordinate c) {
+				System.out.println("棋子颜色："+color);
+				System.out.println("棋子位置："+c.getX()+"----"+c.getY());
+			}
+		
+			@Override
+			public String getColor() {
+				return color;
+			}
+		
+			@Override
+			public void setColor(String c) {
+				this.color = c;
+			}
+			
+		}
+ChessFlyWeightFactory.java
+
+		// 享元工厂
+		public class ChessFlyWeightFactory {
+			//享元池
+			private static Map<String,ChessFlyWeight> map = new HashMap<String, ChessFlyWeight>();
+			
+			public static ChessFlyWeight  getChess(String color){
+				
+				if(map.get(color)!=null){
+					return map.get(color);
+				}else{
+					ChessFlyWeight cfw = new ConcreteChess(color);
+					map.put(color, cfw);
+					return cfw;
+				}
+			}
+		}
+
+总结：<font color=red>享元模式以共享的方式高效的支持大量细粒度对象的重用；享元模式能做到共享的关键是区分了内部状态和外部状态；</font>享元模式的实现过程比较复杂，应该主要学习其应用场景，使用的时候在过来学习。
+
+-----
