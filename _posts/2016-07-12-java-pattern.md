@@ -24,11 +24,11 @@ categories:
 	1. <a href="#31">职责链模式</a>
 	2. <a href="#32">迭代器模式</a>
 	3. <a href="#33">中介者模式</a>
-	4. <a href="#34">观察者模式</a>
-	5. <a href="#35">中介者模式</a>
-	6. <a href="#36">备忘录模式</a>
-	7. <a href="#37">解析器模式</a>
-	8. <a href="#38">状态模式</a>
+	4. <a href="#34">命令模式</a>
+	5. <a href="#35">解释器模式</a>
+	6. <a href="#36">访问者模式</a>
+	7. <a href="#37">策略模式</a>
+	8. <a href="#38">策略模式</a>
 	9. <a href="#39">策略模式</a>
 	10. <a href="#310">职责链模式</a>
 	11. <a href="#311">模版方法模式</a>
@@ -1528,3 +1528,213 @@ client.java
 
 
 ----
+### <a name="34">3.4命令模式</a> ###
+
+1. **特点**
+	<br/>命令模式：将一个请求封装成对象，从而使我们可以用不同的请求对客户进行参数化；对请求排队或者记录请求日志，以及支持可撤销的操作。也称之为：动作Action模式、事务transaction模式。
+2. **应用场景**
+	1. Struts2中，action的整个调用过程就有命令模式
+	2. 数据库事务机制的底层实现
+	3. 命令的撤销和恢复
+3. **实现形式** 
+	1. Command抽象命令类
+	2. ConcreteCommand具体命令类
+	3. Invoker 调用者、请求者<br/>
+![](/img/pattern341.png)
+5. **代码实现**
+ 	<br/>client.java
+
+		public static void main(String[] args) {
+			Command c = new ConcreteCommand(new Receiver());
+			Invoke i = new Invoke(c);
+			i.call();		
+		}
+Command.java
+
+		public interface Command {
+			/**
+			 * 这个方法是一个返回结果为空的方法。
+			 * 实际项目中，可以根据需求设计多个不同的方法
+			 */
+			void execute();
+		}
+		
+		
+		class ConcreteCommand implements Command {
+			
+			private Receiver receiver;	//命令的真正的执行者
+			
+			public ConcreteCommand(Receiver receiver) {
+				super();
+				this.receiver = receiver;
+			}
+		
+			@Override
+			public void execute() {
+				//命令真正执行前或后，执行相关的处理！
+				receiver.action();
+			}
+			
+		}
+Invoke.java
+
+		//调用者/发起者
+		public class Invoke {
+			//也可以通过容器List<Command>容纳很多命令对象，进行批处理。数据库底层的事务管理就是类似的结构！
+			private Command command;  
+		
+			public Invoke(Command command) {
+				super();
+				this.command = command;
+			} 
+			//业务方法 ，用于调用命令类的方法
+			public void call(){
+				command.execute();
+			}
+		}
+Receiver.java
+
+		// 真正的命令的执行者
+		public class Receiver {
+			public void action(){
+				System.out.println("Receiver.action()");
+			}
+		}
+
+总结：**命令模式常常和日志模式一起使用。**
+
+-------
+### <a name="35">3.5解释器模式</a> ###
+
+1. **介绍**
+	1. 是一种不常用的设计模式
+	2. 用于描述如何构成一个简单的解释器，主要用于使用面向对象语言开发的编译器和解释器设计。
+	3. 当我们需要开发一门新的预言时，可以考虑使用解释器模式
+	4. 尽量不要使用解释器模式，后期维护会很麻烦。在项目中可以使用Jruby，Groovy，java的js引擎来代替解释器的作用，弥补java语言的不足。
+2. **应用场景**
+	1. EL表达式的处理
+	2. 正则表达式的解释器
+	3. SQL语法的解释器
+	4. 数学表达式解释器
+	
+总结：解释器模式一般不需要我们自己写，直接是使用即可。
+
+------
+### <a name="36">3.6访问者模式</a> ###
+
+1. **定义**
+	<br/>表示一个作用于某对象结构中的各元素的操作，它使我们可以在不改变个元素的类的前提下定义作用于这些元素的新操作
+2. **使用该模式的目的**
+	<br/>对于存储在一个集合中的对象，他们可能具有不同的类型（即使有一个公共的接口），对于该集合中的对象，可以接收一类称为访问者的对象来访问，不同的访问者其访问方式也有所不同
+2. **应用场景**（应用范围很窄，了解即可）
+	1. XML文档解析器设计
+	2. 编译器的设计
+	3. 复杂集合对象处理
+
+总结：实现不同接口的对象存储在一个集合中，每个对象都可以接收一类称为访问者的对象来访问
+
+-----
+
+### <a name="37">3.7策略模式</a> ###
+
+1. **特点**
+	1. <font color=red>**本质,分离算法、选择实现**</font>
+	2. 策略模式对应于解决某一问题的一个算法族，允许用户从该算法族中任选一个算法解决某一问题，同时可以方便的更换算法或者增加新算法。并且由客户端决定调用那个算法。
+2. **实例**<br/>![](/img/pattern372.jpg)
+3. **UML图解**<br/>![](/img/pattern371.png)
+4. **应用场景**
+	1. 开发中
+		1. JAVA SE中的GUI编程，布局管理
+		2. Spring框架中，Resource接口，资源访问策略
+		3. java.servlet.http.HttpServlet #service() 的子类
+	4. 生活中----到银行办理业务
+		1. 取号排队
+		2. <font color=red>**办理现金/转账/企业/个人/理财业务**</font>
+		3. 给银行人员评分
+5. **代码实现**<br/>
+TestStrategy.java
+		
+		/**
+		 * 实现起来比较容易，符合一般开发人员的思路
+		 * 假如，类型特别多，算法比较复杂时，整个条件语句的代码就变得很长，难于维护。
+		 * 如果有新增类型，就需要频繁的修改此处的代码！
+		 * 不符合开闭原则！
+		 * 
+		 */
+		public class TestStrategy {
+			public double getPrice(String type, double price) {
+		
+				if (type.equals("普通客户小批量")) {
+					System.out.println("不打折,原价");
+					return price;
+				} else if (type.equals("普通客户大批量")) {
+					System.out.println("打九折");
+					return price * 0.9;
+				} else if (type.equals("老客户小批量")) {
+					System.out.println("打八五折");
+					return price * 0.85;
+				} else if (type.equals("老客户大批量")) {
+					System.out.println("打八折");
+					return price * 0.8;
+				}
+				return price;
+			}
+		
+		}
+client.java
+		
+		public class Client {
+			public static void main(String[] args) {
+				
+				Strategy s1 = new OldCustomerManyStrategy();
+				Context ctx = new Context(s1);
+				ctx.pringPrice(998);
+				
+			}
+		}
+
+	Context.java
+
+		/**
+		 * 负责和具体的策略类交互
+		 * 这样的话，具体的算法和直接的客户端调用分离了，使得算法可以独立于客户端独立的变化。
+		 * 如果使用spring的依赖注入功能，还可以通过配置文件，动态的注入不同策略对象，动态的切换不同的算法.
+		 *
+		 */
+		public class Context {
+			private Strategy strategy;	//当前采用的算法对象
+		
+			//可以通过构造器来注入
+			public Context(Strategy strategy) {
+				super();
+				this.strategy = strategy;
+			}
+			//可以通过set方法来注入
+			public void setStrategy(Strategy strategy) {
+				this.strategy = strategy;
+			}
+			
+			public void pringPrice(double s){
+				System.out.println("您该报价："+strategy.getPrice(s));
+			}
+		}
+	OldCustomerManyStrategy.java
+
+		// 老客户大批量进货
+		public class OldCustomerManyStrategy implements Strategy {
+		
+			@Override
+			public double getPrice(double standardPrice) {
+				System.out.println("打八折");
+				return standardPrice*0.8;
+			}
+		
+		}
+总结：<font color=red>**本质,分离算法、选择实现**</font>。把原先`if else`实现的内容重新用策略模式实现，易于扩展和类直接的解耦。
+
+
+-----
+
+
+
+
