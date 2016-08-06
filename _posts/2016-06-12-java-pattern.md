@@ -5,14 +5,14 @@ categories:
 - java
 ---
 
-学习视频和代码：<br/>&emsp;&emsp;&emsp;链接：[http://pan.baidu.com/s/1dF4sFwX](http://pan.baidu.com/s/1dF4sFwX) &emsp;密码：3dxr<br/>
+学习和复习资料：<br/>&emsp;&emsp;&emsp;链接：[http://pan.baidu.com/s/1dF4sFwX](http://pan.baidu.com/s/1dF4sFwX) &emsp;密码：3dxr<br/>
 
-1. <a href="#1">**创建型模式**</a>
+1. <a href="#1">**创建型模式**</a>（关注对象和类的组织）
 	1. <a href="#11">单例模式</a>
 	2. <a href="#12">工厂模式</a>
 	4. <a href="#13">建造者模式</a>
 	5. <a href="#14">原型模式</a>
-2. <a href="#2">**构造型模式**</a>
+2. <a href="#2">**构造型模式**</a>（关注对象和类的创建过程）
 	1. <a href="#21">适配器模式</a>
 	2. <a href="#22">代理模式</a>
 	2. <a href="#23">桥接模式</a>
@@ -20,7 +20,7 @@ categories:
 	4. <a href="#25">装饰模式</a>
 	5. <a href="#26">外观模式</a>
 	6. <a href="#27">享元模式</a>
-3. **行为型模式**
+3. <a>**行为型模式**</a>（关注对象之间的交互、通信、协作）
 	1. <a href="#31">职责链模式</a>
 	2. <a href="#32">迭代器模式</a>
 	3. <a href="#33">中介者模式</a>
@@ -28,10 +28,10 @@ categories:
 	5. <a href="#35">解释器模式</a>
 	6. <a href="#36">访问者模式</a>
 	7. <a href="#37">策略模式</a>
-	8. <a href="#38">策略模式</a>
-	9. <a href="#39">策略模式</a>
-	10. <a href="#310">职责链模式</a>
-	11. <a href="#311">模版方法模式</a>
+	8. <a href="#38">模版方法模式</a>
+	9. <a href="#39">观察者模式</a>
+	10. <a href="#310">备忘录模式</a>
+4. <a href="#4">**总结**</a>
 	
 ## <a name="1">1.创建型模式</a> ##
 
@@ -1735,6 +1735,360 @@ client.java
 
 -----
 
+### <a name="38">3.8模版模式</a> ###
+
+1. **特点**
+	1. 介绍<br/>模版方法模式是编程中常用的模式。它定义了一个操作中的算法骨架，将某些步骤延迟到子类中实现。这样，新的子类可以在不改变一个算法结构的前提下重新定义该算法的某些步骤。
+	2. 核心<br/>处理某个流程的代码都已经具备，但是其中某个节点的代码暂时不能确定。因此，我们采用工厂方法模式，将这个节点的代码实现转移到子类完成。即：<font color=red>**处理步骤在父类中已经定义好，具体实现延迟到子类中定义。**</font>
+2. **适用场景**<br/>**实现一个算法时，整体步骤已经固定。但是，某些部分易变。易变部分可以抽象出来，供子类实现。**
+3. **应用举例**
+	1. 数据库访问的封装
+	2. Junit单元测试
+	3. servlet中doGet和doPost方法的调用
+	4. Hibernate中模块程序
+	5. Spring中`JDBCTemplate`,`HerbnateTemplate`
+5. **代码实现**
+<br/>client.java
+
+		public class Client {
+			public static void main(String[] args) {
+				BankTemplateMethod btm = new DrawMoney();
+				btm.process();
+				
+				//采用匿名内部类
+				BankTemplateMethod btm2 = new BankTemplateMethod() {
+					
+					@Override
+					public void transact() {
+						System.out.println("我要存钱！");
+					}
+				};
+				btm2.process();
+				
+				BankTemplateMethod btm3 = new BankTemplateMethod() {
+					@Override
+					public void transact() {
+						System.out.println("我要理财！我这里有2000万韩币");
+					}
+				};
+				btm3.process();
+				
+			}
+		}
+		
+		class DrawMoney extends BankTemplateMethod {
+		
+			@Override
+			public void transact() {
+				System.out.println("我要取款！！！");
+			}
+			
+		}
+BankTemplateMethod.java
+
+		public abstract class BankTemplateMethod {
+			//具体方法
+			public void takeNumber(){
+				System.out.println("取号排队");
+			}
+			
+			public abstract void transact(); //办理具体的业务	//钩子方法
+			
+			public void evaluate(){
+				System.out.println("反馈评分");
+			}
+			
+			public final void process(){	//模板方法！！！
+				this.takeNumber();
+		
+				this.transact();
+		
+				this.evaluate();
+			}
+			
+		}
+
+总结：模版方法模式应用比较广泛，是基于多态的。核心实现：<font color=red>**处理步骤在父类中已经定义好，具体实现延迟到子类中定义。**</font>**适用场景：实现一个算法时，整体步骤已经固定。但是，某些部分易变。易变部分可以抽象出来，供子类实现。**
+
+----
 
 
+### <a name="39">3.9观察者模式</a> ###
+1. **特点**
+	1. 观察者模式主要用于1:N的通知，当一个对象（目标对象Subject或Object）的状态变化时，它需要即使告知一系列的对象（观察者对象，Observer），令他们做出响应。
+	2. 通知观察者方式：
+		1. 推<br/>每次都会把通知以广播的方式发送给观察者，所有观察者只能被动接收。
+		2. 拉<br/>观察者只要知道情况即可。至于什么时候获取内容，获取什么内容，都可以自主决定。
+2. **UML图解**<br/>![](/img/pattern391.png)
+3. **应用场景**
+	1. 聊天室程序，服务器转发给所有客户端
+	2. 网络游戏（多人联机对战）场景中，服务器将客户端的状态分发
+	3. 邮件订阅
+	4. Servlet中，监视器的实现
+	5. Andriod中，广播机制
+5. **代码实现**
+<br/>Client.java（自定义观察者）
 
+		public class Client {
+			public static void main(String[] args) {
+				//目标对象
+				ConcreteSubject subject = new ConcreteSubject();
+				
+				//创建多个观察者
+				ObserverA  obs1 = new ObserverA();
+				ObserverA  obs2 = new ObserverA();
+				ObserverA  obs3 = new ObserverA();
+				
+				//将这三个观察者添加到subject对象的观察者队伍中
+				subject.registerObserver(obs1);
+				subject.registerObserver(obs2);
+				subject.registerObserver(obs3);
+				
+				
+				//改变subject的状态
+				subject.setState(3000);
+				System.out.println("########################");
+				//我们看看，观察者的状态是不是也发生了变化
+				System.out.println(obs1.getMyState());
+				System.out.println(obs2.getMyState());
+				System.out.println(obs3.getMyState());
+		
+			}
+		}
+Observer.java（观察者）
+
+		public interface Observer {
+			void  update(Subject subject);
+		}
+		
+		public class ObserverA implements Observer {
+		
+			private int myState;   //myState需要跟目标对象的state值保持一致！
+			
+			
+			@Override
+			public void update(Subject subject) {
+				myState = ((ConcreteSubject)subject).getState();
+			}
+		
+		
+			public int getMyState() {
+				return myState;
+			}
+			public void setMyState(int myState) {
+				this.myState = myState;
+			}
+		
+		}
+Subject.java （客户端）
+
+		public class Subject {
+			
+			protected List<Observer> list = new ArrayList<Observer>();
+			
+			public void registerObserver(Observer obs){
+				list.add(obs);
+			}
+			public void removeObserver(Observer obs){
+				list.add(obs);
+			}
+		
+			//通知所有的观察者更新状态
+			public void notifyAllObservers(){
+				for (Observer obs : list) {
+					obs.update(this);
+				}
+			}
+			
+		}
+		
+		public class ConcreteSubject extends Subject {
+			
+			private int state;
+		
+			public int getState() {
+				return state;
+			}
+		
+			public void setState(int state) {
+				this.state = state;
+				//主题对象(目标对象)值发生了变化，请通知所有的观察者
+				this.notifyAllObservers();
+			} 
+			
+		}
+
+
+	>使用系统提供的接口实现观察者模式
+	
+	ConcreteSubject.java
+
+		//目标对象
+		public class ConcreteSubject extends Observable {
+			
+			private int state; 
+			
+			public void set(int s){
+				state = s;  //目标对象的状态发生了改变
+				
+				setChanged();  //表示目标对象已经做了更改
+				notifyObservers(state);  //通知所有的观察者
+				
+			}
+		
+			public int getState() {
+				return state;
+			}
+		
+			public void setState(int state) {
+				this.state = state;
+			}
+			
+		}
+
+总结：**观察者模式主要用于1:N的通知，用于广播。**
+
+
+--------
+
+### <a name="310">3.10备忘录模式</a> ###
+
+
+1. **核心**<br/>保存某个对象内部状态的拷贝，这样以后就可以将该对象恢复到原先的状态
+2. **场景**
+	1. 现实生活中
+		1. 录入大批量人员资料。正在录入当前人资料时，发现一个人录错了，此时需要恢复上一个人的资料，在进行修改
+		2. Word文档编辑时，忽然电脑死机或者停电，再打开时，可以看到word提示恢复到以前的状态
+		3. 管理系统中，公文撤回功能。公文发送出去后，想撤回来
+	4. 开发中
+		1. 棋类游戏中的悔棋
+		2. 普通软件中的撤销操作
+		3. 数据库软件中，事务管理中的回滚操作
+		4. Photoshop软件中的，历史记录
+3. **实现形式**
+	1. 源发器类Originator
+	2. 备忘录类Memento
+	3. 负责人类CareTaker<br/>
+	![](/img/pattern3101.png)
+5. **代码实现**<br/>
+Emp.java（源发器类）
+
+		// 源发器类
+		public class Emp {
+			private String ename;
+			private int age;
+			private double salary;
+			
+			
+			//进行备忘操作，并返回备忘录对象
+			public EmpMemento  memento(){
+				return new EmpMemento(this);
+			}
+			
+			
+			//进行数据恢复，恢复成制定备忘录对象的值
+			public void recovery(EmpMemento mmt){
+				this.ename = mmt.getEname();
+				this.age = mmt.getAge();
+				this.salary = mmt.getSalary();
+			}
+			
+			
+			public Emp(String ename, int age, double salary) {
+				super();
+				this.ename = ename;
+				this.age = age;
+				this.salary = salary;
+			}
+			public String getEname() {
+				return ename;
+			}
+			public void setEname(String ename) {
+				this.ename = ename;
+			}
+			public int getAge() {
+				return age;
+			}
+			public void setAge(int age) {
+				this.age = age;
+			}
+			public double getSalary() {
+				return salary;
+			}
+			public void setSalary(double salary) {
+				this.salary = salary;
+			}
+			
+			
+		}
+
+	EmpMemento.java
+
+		// 备忘录类
+		public class EmpMemento {
+			private String ename;
+			private int age;
+			private double salary;
+			
+			
+			public EmpMemento(Emp e) {
+				this.ename = e.getEname();
+				this.age = e.getAge();
+				this.salary = e.getSalary();
+			}
+			
+			
+			public String getEname() {
+				return ename;
+			}
+			public void setEname(String ename) {
+				this.ename = ename;
+			}
+			public int getAge() {
+				return age;
+			}
+			public void setAge(int age) {
+				this.age = age;
+			}
+			public double getSalary() {
+				return salary;
+			}
+			public void setSalary(double salary) {
+				this.salary = salary;
+			}
+			
+		}
+	CareTaker.java
+
+		// 负责人类
+		// 负责管理备忘录对象
+		public class CareTaker {
+			
+			private EmpMemento memento;
+		
+			// 通过容器保存多个状态
+		//	private List<EmpMemento> list = new ArrayList<EmpMemento>();
+			
+			public EmpMemento getMemento() {
+				return memento;
+			}
+		
+			public void setMemento(EmpMemento memento) {
+				this.memento = memento;
+			}
+				
+		}
+
+总结：保存某个对象内部状态的拷贝，这样以后就可以将该对象恢复到原先的状态。**掌握实现形式。**
+
+
+-----
+
+### <a name="4">4总结</a> ###
+
+1. **知识框架**<br/>
+	结构型模型关注**类和对象的组织**；创建型模型关注**对象的创建过程**；行为型模式关注系统中对象之间的**交互**，研究系统在运行时对象之间的相互通信和协作，进一步明确对象的职责。
+2. **学习方法**
+	1. **代码实现**<br/>代码实现是学习设计模式的快速入口，把设计模式的代码默写出来能深入理解设计模式。
+	2. **UML图解**<br/>UML图解，可以帮助我们清晰代码中的类的结构、组织关系。
+	3. **应用场景**<br/>学习的最终目的是应用，熟练掌握每个设计模式的应用场景，是应用设计模式的入口。在应用的过程中不必很清晰具体的设计模式怎么实现，但一定要知道实现的软件要使用那种设计模式，然后在查阅学习。
