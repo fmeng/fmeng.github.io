@@ -4,7 +4,11 @@ title: "Linux 复习"
 categories:
 - linus
 ---
-<font color=red>**linux手册中文（包含其他中文手册！！！）：[http://linux.51yip.com/](http://linux.51yip.com/)**</font>
+1. [http://linux.51yip.com/](http://linux.51yip.com/)&emsp;&emsp;<font color=red>**linux手册中文（包含其他中文手册！！！）**</font>
+2. [http://man.linuxde.net/](http://man.linuxde.net/)
+3. [鸟哥的私房菜 Oline](http://cn.linux.vbird.org/)
+4. [鸟哥的私房菜 CHM](http://pan.baidu.com/s/1hs4TXeG)&emsp;&emsp;iu9n
+5. [鸟哥的私房菜 PDF](http://pan.baidu.com/s/1nv0afqD)&emsp;&emsp;csqm
 
 ---
 1. `cp -R .fmeng.txt /home/fmeng`

@@ -1,11 +1,12 @@
 ---
 layout: post
-title: "Java Web 复习"
+title: "Java Web 基础"
 categories:
 - java
 ---
+1. [java_ ee_sdk-7u2](http://www.oracle.com/technetwork/java/javaee/downloads/java-ee-sdk-7-downloads-1956236.html) &emsp;&emsp;<font color=red>**API文档在SDK中**</font>
+2. [java-ee-sdk-7u2-api online](http://docs.oracle.com/javaee/7/api/)
 
-![](/img/web12.jpg)
 
 1. 创建web应用的3三种方式(context就是web应用)
 	1. 修改`path2Tomcat/conf/server.xml`文件，需要重启、被所有web应用共享
@@ -121,4 +122,4 @@ categories:
 
 
 -----
-总结：先学习sevlet再学习jsp技术。为了开发方便会引入其他技术。
+总结：**先学习sevlet再学习jsp技术。为了开发方便会引入其他技术。**
