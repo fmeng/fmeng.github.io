@@ -4,8 +4,9 @@ title: "Java 如何有效地避免OOM：善于利用软引用和弱引用"
 categories:
 - java
 ---
-
-#### [http://www.cnblogs.com/dolphin0520/p/3784171.html](http://www.cnblogs.com/dolphin0520/p/3784171.html) ####
+### 学习资料 ###
+1. [http://www.cnblogs.com/dolphin0520/p/3784171.html](http://www.cnblogs.com/dolphin0520/p/3784171.html) 
+2. [《深入理解Java虚拟机》 ](http://pan.baidu.com/s/1c2A3XOO)&emsp;&emsp;密码：a2tr
 
 ### <a>一、理解</a> ###
 1. 引用（Reference），描述了引用和对象之间的关系（引用-->对象），一个对象可对应多个、多种引用
