@@ -86,7 +86,7 @@ categories:
 
 ### <a>三、总结</a> ###
 
-<table border="1" cellspacing="0" cellpadding="0">
+<table class="meng">
   <tbody>
     <tr>
       <td valign="top" width="25%"><p><span style="font-size: 14px;"><strong>级别</strong></span></p></td>
