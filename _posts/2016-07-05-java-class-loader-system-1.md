@@ -23,6 +23,7 @@ categories:
 ![](/img/java-jvm1.jpg)<br/>
 -----
 ![](/img/java-jvm2.jpg)<br/>
+
 ### 二、	类的加载、连接（验证、准备、解析）、初始化 ##
 
 1. **加载。**
@@ -57,7 +58,9 @@ categories:
 只有当程序访问的静态变量或静态方法确实在当前类或当前接口中定义时，才可以认为是对类或接口的主动使用<br/>
 **调用ClassLoader类的loadClass方法加载一个类，并不是对类的主动使用，不会导致类的初始化**
 <br/>![](/img/java-jvm4.jpg)<br/>
+
 ### 三、Java程序对类的使用方式分为两种 ###
+
 1. 主动使用<font color=red>**（6钟）**</font><font color=red>
 	1. 创建类的实例
 	1. 访问某个类或接口的静态变量，或者对静态变量赋值（调用编译时候的类的常量，不会导致被初始化）
@@ -131,7 +134,9 @@ categories:
 	counter2: 1
 
 ---------
+
 #### 示例二、访问某个类或接口的静态变量，或者对静态变量赋值（调用编译时候的类的常量，不会导致被初始化） ####
+
 	package me.fmeng.jvm.test;
 	
 	import java.util.Random;
