@@ -8,8 +8,9 @@ categories:
 
 1. [设计模式，静态代理和动态代理](http://www.fmeng.me/java/2016/06/12/java-pattern.html#22)
 1. [http://www.codekk.com/blogs/detail/54cfab086c4761e5001b253d](http://www.codekk.com/blogs/detail/54cfab086c4761e5001b253d)
-2. [https://www.ibm.com/developerworks/cn/java/j-lo-proxy1/](https://www.ibm.com/developerworks/cn/java/j-lo-proxy1/)
-3. [https://www.ibm.com/developerworks/cn/java/j-lo-proxy2/](https://www.ibm.com/developerworks/cn/java/j-lo-proxy2/)
+2. [https://www.ibm.com/developerworks/cn/java/j-lo-proxy1](https://www.ibm.com/developerworks/cn/java/j-lo-proxy1/)
+3. [https://www.ibm.com/developerworks/cn/java/j-lo-proxy2](https://www.ibm.com/developerworks/cn/java/j-lo-proxy2/)
+4. [Class.forName() 和 ClassLoader.loadClass() 的区别](http://stackoverflow.com/questions/8100376/class-forname-vs-classloader-loadclass-which-to-use-for-dynamic-loading)
 4. [《设计模式：Java语言中的应用》](http://pan.baidu.com/s/1gfuOLYr) &emsp;&emsp;密码：imup
 5. [《深入Java虚拟机》](http://pan.baidu.com/s/1gfG3275) &emsp;&emsp;密码：hm8w
 
