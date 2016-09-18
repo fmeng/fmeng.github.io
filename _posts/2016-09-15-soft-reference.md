@@ -7,6 +7,9 @@ categories:
 ### 学习资料 ###
 1. [http://www.cnblogs.com/dolphin0520/p/3784171.html](http://www.cnblogs.com/dolphin0520/p/3784171.html) 
 2. [这个博客质量不怎么样，只看虚引用部分就行了](http://droidyue.com/blog/2014/10/12/understanding-weakreference-in-java/)
+3. [https://www.iflym.com/index.php/java-programe/201407140001.html](https://www.iflym.com/index.php/java-programe/201407140001.html)
+4. [https://www.iflym.com/index.php/code/201609050002.html](https://www.iflym.com/index.php/code/201609050002.html)
+4. [https://docs.oracle.com/javase/8/docs/api/java/util/WeakHashMap.html](https://docs.oracle.com/javase/8/docs/api/java/util/WeakHashMap.html)
 2. [《深入理解Java虚拟机》 ](http://pan.baidu.com/s/1c2A3XOO)&emsp;&emsp;密码：a2tr
 
 -----
