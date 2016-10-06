@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Linux 复习"
+title: "Linux 复习、git复习"
 categories:
 - linus
 ---
@@ -55,6 +55,21 @@ categories:
 		4. useradd、usermod(修改用户参数一样）<br/>
 			![](/img/linux101.jpg)
 		5. gpasswd<br/>![](/img/linux102.jpg)
+
+常用命令：
+
+	git init
+	git add .
+	git commit -m 
+	git push origin fmeng
+
+----
+
+	git pull origin master
+	git fetch
+	git merger
+	
+
 
 ----
 总结：容易忘记的东西，及时做笔记，查阅方便。
