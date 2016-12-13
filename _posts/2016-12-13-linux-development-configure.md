@@ -10,15 +10,15 @@ categories:
    `#1 SMP Wed Mar 23 03:35:39 UTC 2016 x86_64 x86_64 x86_64 GNU/Linux`
 
 ### 配置 ###
-1. 相关下载链接: https://pan.baidu.com/s/1mi2QMNm 密码: j3w1
+1. 相关下载链接: <a href="https://pan.baidu.com/s/1mi2QMNm"></a> 密码: j3w1
    1. maven-3.0.5.tar.gz
-      <br/>版本下载：https://maven.apache.org/docs/history.html
+      <br/>版本下载：<a href="https://maven.apache.org/docs/history.html"></a>
    2. jdk-7u79-linux-x64.tar.gz 
       <br/>版本下载：
-      <br/>http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
-      <br/>http://www.oracle.com/technetwork/cn/java/javase/downloads/jdk7-downloads-1880260.html
+      <br/><a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html"></a>
+      <br/><a href="http://www.oracle.com/technetwork/cn/java/javase/downloads/jdk7-downloads-1880260.html"></a>
    3. apache-tomcat-8.5.6.tar.gz 
-       <br/> 版本下载；http://tomcat.apache.org/
+       <br/> 版本下载；<a href="http://tomcat.apache.org/"></a>
    4. m2.20161213.tar.gz
 
 2. `/etc/profile`<br/>
@@ -46,12 +46,12 @@ categories:
             # tomcat 开机自动启动
             # chkconfig: 2345 10 90  
             # description: Starts and Stops the Tomcat daemon. 
-
+       
             ##################路径改变，需要修改######################
             JAVA_HOME=/usr/local/jdk7/jdk1.7.0_79
             export JAVA_HOME                                                         PATH=$JAVA_HOME/bin:$PATH
             export PATH 
-
+       
             ##################路径改变,需要修改########################
             CATALINA_HOME=/usr/local/tomcat8/apache-tomcat-8.5.6
             case $1 in
@@ -67,7 +67,7 @@ categories:
             ;;
             esac
             exit 0
-5.  tomcat 安装路径
+5. tomcat 安装路径
             [root@host apache-tomcat-8.5.6]# pwd
             /usr/local/tomcat8/apache-tomcat-8.5.6
             [root@host apache-tomcat-8.5.6]# ls -l
