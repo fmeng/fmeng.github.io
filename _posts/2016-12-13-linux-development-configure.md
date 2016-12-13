@@ -10,18 +10,19 @@ categories:
    `#1 SMP Wed Mar 23 03:35:39 UTC 2016 x86_64 x86_64 x86_64 GNU/Linux`
 
 ### 配置 ###
-1. 相关下载链接: <a href="https://pan.baidu.com/s/1mi2QMNm"></a> 密码: j3w1
+1. 相关下载链接: <a href="https://pan.baidu.com/s/1mi2QMNm">https://pan.baidu.com/s/1mi2QMNm"</a> 密码: j3w1
    1. maven-3.0.5.tar.gz
-      <br/>版本下载：<a href="https://maven.apache.org/docs/history.html"></a>
+      <br/>版本下载：<a href="https://maven.apache.org/docs/history.html">https://maven.apache.org/docs/history.html</a>
    2. jdk-7u79-linux-x64.tar.gz 
       <br/>版本下载：
-      <br/><a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html"></a>
-      <br/><a href="http://www.oracle.com/technetwork/cn/java/javase/downloads/jdk7-downloads-1880260.html"></a>
+      <br/><a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html</a>
+      <br/><a href="http://www.oracle.com/technetwork/cn/java/javase/downloads/jdk7-downloads-1880260.html">http://www.oracle.com/technetwork/cn/java/javase/downloads/jdk7-downloads-1880260.html</a>
    3. apache-tomcat-8.5.6.tar.gz 
-       <br/> 版本下载；<a href="http://tomcat.apache.org/"></a>
+       <br/> 版本下载；<a href="http://tomcat.apache.org/">http://tomcat.apache.org/</a>
    4. m2.20161213.tar.gz
 
 2. `/etc/profile`<br/>
+
             export JAVA_HOME=/usr/local/jdk7/jdk1.7.0_79
             export JRE_HOME=/usr/local/jdk7/jdk1.7.0_79/jre
             export PATH=$PATH:/usr/local/jdk7/jdk1.7.0_79/bin
@@ -31,6 +32,7 @@ categories:
             export PATH=${MAVEN_HOME}/bin:${PATH}
             export M2=/usr/local/maven/maven-3.0.5/bin
 3. jdk1.7.0_79
+
             [root@host jdk1.7.0_79]# pwd
             /usr/local/jdk7/jdk1.7.0_79
             [root@host jdk1.7.0_79]# ls -al
@@ -42,6 +44,7 @@ categories:
             drwxr-xr-x 5 uucp  143     4096 4月  11 2015 lib
 
 4. /etc/init.d/tomcat(以服务的形式启动tomcat时使用)
+
             #!/bin/bash
             # tomcat 开机自动启动
             # chkconfig: 2345 10 90  
@@ -68,6 +71,7 @@ categories:
             esac
             exit 0
 5. tomcat 安装路径
+
             [root@host apache-tomcat-8.5.6]# pwd
             /usr/local/tomcat8/apache-tomcat-8.5.6
             [root@host apache-tomcat-8.5.6]# ls -l
