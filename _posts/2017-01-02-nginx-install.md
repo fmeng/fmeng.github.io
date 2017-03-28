@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "CentOS 7 网路配置，修改静态IP，更换主机名"
+title: "ngix配置"
 categories:
 - linus
 ---
@@ -28,3 +28,4 @@ categories:
 		
 4. openssl-fips
 5. nginx
+
