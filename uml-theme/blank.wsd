@@ -1,5 +1,3 @@
-' change the default styles
-scale 1.2
 skinparam shadowing false
 skinparam roundcorner 10
 
