@@ -9,4 +9,4 @@ skinparam Note {
  FontSize 12
 }
 autonumber
-right footer @auther:fmeng
+right footer @Auther:fmeng

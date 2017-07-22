@@ -5,4 +5,4 @@ skinparam packageStyle rect
 skinparam defaultFontName FG Virgil
 skinparam shadowing false
 autonumber
-right footer @auther:fmeng
+right footer @Auther:fmeng
