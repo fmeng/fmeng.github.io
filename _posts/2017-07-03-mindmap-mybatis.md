@@ -7,6 +7,6 @@ categories:
 
 
 <script language="javascript" type="text/javascript"> 
-window.location.href='http://www.fmeng.me/mindmap-html/Mybatis.html';
+window.location.href='http://www.fmeng.me/mindmap-html/Mbatis.html';
 </script>
 
