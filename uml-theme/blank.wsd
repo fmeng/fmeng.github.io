@@ -31,5 +31,4 @@ skinparam packageFontColor #9DA0A4
 skinparam package {
 BorderColor #CCCCCC
 }
-autonumber
 right footer @Auther:fmeng

@@ -7,5 +7,4 @@ skinparam Note {
  BackgroundColor #CEEEFE
  FontSize 12
 }
-autonumber
 right footer @Auther:fmeng
